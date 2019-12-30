@@ -36,40 +36,35 @@ public class DispatcherConfigurationManager {
         this.logDirectory                   = this.baseDirectory.resolve(DispatcherConstants.DIRECTORY_WITH_LOGS);
     }
 
-    private boolean validateDispatcherDirectoryStructure(){
+    private boolean validateDirectory(Path directoryToValidate){
 
-        String missingOldFileDirectoryMessage = String.format("Missing directory containing old files: %s",this.directoryWithOldFiles);
-        String missingNewFileDirectoryMessage = String.format("Missing directory containing new files: %s",this.directoryWithNewFiles);
-        String missingFilesToDeleteDirectoryMessage = String.format("Missing directory containing files to delete: %s",this.directoryWithFilesToDelete);
-        String missingFilesToUpdateDirectoryMessage = String.format("Missing directory containing files to update: %s",this.directoryWithFilesToUpdate);
-        String missingFilesToAddDirectoryMessage = String.format("Missing directory containing files to add: %s",this.directoryWithFilesToAdd);
+        String missingDirectoryMessage =  String.format("Missing directory: %s",directoryToValidate);
+        String isNotADirectoryMessage =   String.format("Following is not a directory: %s",directoryToValidate);
+        String isNotReadable =   String.format("Following directory is not readable: %s",directoryToValidate);
 
-        if (!Files.exists(this.directoryWithOldFiles) || !Files.isDirectory(this.directoryWithOldFiles)){
-            logger.error(missingOldFileDirectoryMessage);
+        if (!Files.exists(directoryToValidate)){
+            logger.error(missingDirectoryMessage);
             return false;
         }
 
-        if (!Files.exists(this.directoryWithNewFiles) || !Files.isDirectory(this.directoryWithNewFiles)){
-            logger.error(missingNewFileDirectoryMessage);
-            return false;
-        }
-
-        if (!Files.exists(this.directoryWithFilesToDelete) || !Files.isDirectory(this.directoryWithFilesToDelete)){
-            logger.error(missingFilesToDeleteDirectoryMessage);
-            return false;
-        }
-
-        if (!Files.exists(this.directoryWithFilesToUpdate) || !Files.isDirectory(this.directoryWithFilesToUpdate)){
-            logger.error(missingFilesToUpdateDirectoryMessage);
-            return false;
-        }
-
-        if (!Files.exists(this.directoryWithFilesToAdd) || !Files.isDirectory(this.directoryWithFilesToAdd)){
-            logger.error(missingFilesToAddDirectoryMessage);
+        if (!Files.isDirectory(directoryToValidate)){
+            logger.error(isNotADirectoryMessage);
             return false;
         }
 
         return true;
+    }
+    private boolean validateDispatcherDirectoryStructure(){
+
+        Boolean isDirectoryStructureValid;
+
+        isDirectoryStructureValid = validateDirectory(this.directoryWithOldFiles)
+                                    && validateDirectory(this.directoryWithNewFiles)
+                                    && validateDirectory(this.directoryWithFilesToDelete)
+                                    && validateDirectory(this.directoryWithFilesToUpdate)
+                                    && validateDirectory(this.directoryWithFilesToAdd);
+
+        return isDirectoryStructureValid;
     }
 }
 
