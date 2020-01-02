@@ -13,6 +13,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <source>7</source>
                     <target>7</target>
                 </configuration>
@@ -32,6 +33,9 @@
                             <filesets>
                                 <fileset>
                                     <directory>${basedir}/src/test/testArtifacts/dispatcher_test_directory/work</directory>
+                                </fileset>
+                                <fileset>
+                                    <directory>${basedir}/src/test/testArtifacts/dispatcher_test_directory_2/work</directory>
                                 </fileset>
                             </filesets>
                         </configuration>
@@ -62,6 +66,25 @@
                      </resources>
                  </configuration>
                  </execution>
+                     <execution>
+                         <id>copy-resources-2</id>
+                         <phase>validate</phase>
+                         <goals>
+                             <goal>copy-resources</goal>
+                         </goals>
+                         <configuration>
+                             <includeEmptyDirs>true</includeEmptyDirs>
+                             <overwrite>true</overwrite>
+                             <encoding>UTF-8</encoding>
+                             <outputDirectory>${basedir}/src/test/testArtifacts/dispatcher_test_directory_2/work</outputDirectory>
+                             <resources>
+                                 <resource>
+                                     <directory>${basedir}/src/test/testArtifacts/03_directories_with_files_to_dispatch/work</directory>
+                                     <filtering>false</filtering>
+                                 </resource>
+                             </resources>
+                         </configuration>
+                     </execution>
                  </executions>
              </plugin>
 
@@ -109,6 +132,12 @@
             <artifactId>maven-resources-plugin</artifactId>
           <version>3.0.2</version>
         </dependency>
+         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
+         <dependency>
+             <groupId>org.apache.commons</groupId>
+             <artifactId>commons-configuration2</artifactId>
+             <version>2.6</version>
+         </dependency>
 
     </dependencies>
 </project>

@@ -1,4 +1,4 @@
-package DispatcherTest;
+package dispatcherTest;
 
 import dispatcher.DispatcherConstants;
 import org.junit.Test;
