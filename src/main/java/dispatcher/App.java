@@ -2,37 +2,27 @@ package dispatcher;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import reader.DatabaseReader;
+import reader.DatabaseToFileConverter;
+import reader.LogicalNodeConfigurationManager;
 
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 
 public class App {
 
     private static final Logger logger = LogManager.getLogger(App.class.getName());
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException {
 
-        System.out.println("hello world");
-        logger.error("test logs");
-        logger.warn("test");
-        logger.debug("test logs");
+        logger.info("Starting processing");
 
-        DatabaseReader databaseReader = new DatabaseReader("ID",1,"C:\\test_java\\test");
-        databaseReader.connectToDatabase();
+        LogicalNodeConfigurationManager readerConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"myse_id");
 
+        DatabaseToFileConverter databaseToFileConverter = new DatabaseToFileConverter(readerConfigurationManager,"4007129887538");
 
+        logger.info("Ended processing");
     }
 
 }
 
-/*
-https://www.oracle.com/database/technologies/develop-java-apps-using-jdbc.html
-
-<dependency>
-		<groupId>com.oracle</groupId>
-		<artifactId>ojdbc</artifactId>
-		<version>8</version>
-		<scope>system</scope>
-		<systemPath>d:/projects/ojdbc8.jar</systemPath>
-	</dependency>
- */

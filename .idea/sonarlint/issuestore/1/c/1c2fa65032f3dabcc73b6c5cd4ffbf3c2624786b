@@ -1,0 +1,7 @@
+
+nsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(«åŽ‹øÿÿÿÿ8Ìƒ½÷-
+isquid:CommentedOutCodeLinel"<This block of commented-out lines of code should be removed.(ïÜÝÚ8Ìƒ½÷-
+isquid:S1192ž"JDefine a constant instead of duplicating this literal "common.%s" 3 times.(Ê¤ 8Þ§û¾÷-
+rsquid:UselessImportCheck"GRemove this unused import 'org.apache.commons.beanutils.PropertyUtils'.(Â„¬œ8Ìƒ½÷-
+squid:UselessImportCheck"eRemove this unused import 'org.apache.commons.configuration2.builder.FileBasedBuilderParametersImpl'.(€ø·“8Ìƒ½÷-
+jsquid:S1192Ÿ"FDefine a constant instead of duplicating this literal "%s.%s" 3 times.(Îðú’úÿÿÿÿ8Þ§û¾÷-

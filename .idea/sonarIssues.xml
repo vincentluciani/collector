@@ -63,6 +63,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/DatabaseToFileConverter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/LogicalNodeConfigurationManager.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/ReaderConfigurationManager.java">
           <value>
             <set />
@@ -138,6 +148,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/readerTest/ReaderConfigurationManagerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test/resources/log4j.properties">
           <value>
             <set />
@@ -149,6 +164,46 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/resources/log4j2.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/criteriaSet/criteriaSet_010.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/dataSelectionTemplate/dataSelectionTemplate_100.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/databaseaccess.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/logicalNode/logicalNode.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/logicalNode/logicalNode_001.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/logicalNode/logicalNodes.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/physicalDataSource/physicalDataSource_003.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configurations/logicalNode/logicalNode_001.properties">
           <value>
             <set />
           </value>

@@ -11,8 +11,8 @@ public class UniversalFileCreator {
 
     private Path basePath;
 
-    public UniversalFileCreator(String basePath)  {
-        this.basePath = Paths.get(basePath);
+    public UniversalFileCreator(Path basePath)  {
+        this.basePath = basePath;
     }
 
     public void createFile(String row, String fileName) {
