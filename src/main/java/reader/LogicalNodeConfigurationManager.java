@@ -74,6 +74,7 @@ nodeid.propertyname
     @Getter private String outputCreationTemplate;
     @Getter private Integer identificationColumnNumber;
     @Getter private Integer readerBatchSize;
+    @Getter private Integer writerBatchSize;
     @Getter private String identificationColumnName;
 
     private String logicalNodeID;
@@ -95,6 +96,7 @@ nodeid.propertyname
     private static final String IDENTIFICATION_NUMBER="identificationColumnNumber";
     private static final String OUTPUT_BASE_PATH="outputBasePath";
     private static final String READER_BATCH_SIZE="readerBatchSize";
+    private static final String WRITER_BATCH_SIZE="writerBatchSize";
     private static final String IDENTIFICATION_COLUMN_NAME="identificationColumnName";
     private static final String OUTPUT_CREATION_TEMPLATE="outputCreationTemplate";
 
@@ -224,6 +226,7 @@ nodeid.propertyname
 
         this.identificationColumnNumber = Integer.valueOf(getSimpleParameter(IDENTIFICATION_NUMBER,configuration));
         this.readerBatchSize = Integer.valueOf(getSimpleParameter(READER_BATCH_SIZE,configuration));
+        this.writerBatchSize = Integer.valueOf(getSimpleParameter(WRITER_BATCH_SIZE,configuration));
         this.identificationColumnName = getSimpleParameter(IDENTIFICATION_COLUMN_NAME,configuration);
 
     }

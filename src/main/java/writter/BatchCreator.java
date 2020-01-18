@@ -54,11 +54,11 @@ public class BatchCreator {
                             line);
                     stringBuilder.append(jsonBodyCreator.toString()).append("\n");
                 }
-
-                //if ( this.lineInBatchCount > this.logicalNodeConfigurationManager.getBatchCreatorMaxSize){
-                //    break;
-                //}
-                //this.lineInBatchCount++;
+                // TODO: rename the file or delete, or move the file to processed directory
+                if ( this.lineInBatchCount > this.logicalNodeConfigurationManager.getWriterBatchSize()){
+                    break;
+                }
+                this.lineInBatchCount++;
             }
         } catch (IOException e) {
             System.out.println(e);
