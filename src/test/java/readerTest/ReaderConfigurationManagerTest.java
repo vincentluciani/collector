@@ -67,4 +67,10 @@ public class ReaderConfigurationManagerTest {
 
         assertEquals(expectedCriteriaSet.toString(),readerConfigurationManager.getListOfCriteria().toString());
     }
+
+    @Test
+    public void checkOutputCreationTemplate(){
+        String expectedTemplate="[{\"id\": \"${id}\",\"field0\": \"${0}\",\"field1\": \"${1}\"]";
+        assertEquals(expectedTemplate,readerConfigurationManager.getOutputCreationTemplate());
+    }
 }

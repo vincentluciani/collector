@@ -68,17 +68,26 @@ public class DatabaseToFileConverter {
             getMetaData(rs);
 
             int counter = 0;
+
             while (rs.next()) {
-                String documentName = rs.getString(this.identificationColumnNumber);
+
                 try {
-                    String row = "";
+                    String documentName = rs.getString(this.identificationColumnNumber);
+                    String row;
+
+                    StringBuilder sb = new StringBuilder("");
+
                     for (int i = 1; i <= this.columnCount; i++) {
-                        row += rs.getString(i) + ";";
-                    }
-                    System.out.println();
+                        sb.append(rs.getString(i));
+                        sb.append(";");
+                     }
+
+                    row=sb.toString();
+
+
                     counter++;
-                    UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
-                    universalFileCreator.createFile(row,documentName);
+                  UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
+                  universalFileCreator.createFile(row,documentName);
                     this.lastProcessedIdentification = documentName;
                 } catch (SQLException ex) {
                     ex.printStackTrace();

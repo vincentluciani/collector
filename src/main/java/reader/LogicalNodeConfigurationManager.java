@@ -71,6 +71,7 @@ nodeid.propertyname
 
     @Getter private Map<String,String> listOfCriteria;
     @Getter private String dataSelectionTemplate;
+    @Getter private String outputCreationTemplate;
     @Getter private Integer identificationColumnNumber;
     @Getter private Integer readerBatchSize;
     @Getter private String identificationColumnName;
@@ -95,6 +96,7 @@ nodeid.propertyname
     private static final String OUTPUT_BASE_PATH="outputBasePath";
     private static final String READER_BATCH_SIZE="readerBatchSize";
     private static final String IDENTIFICATION_COLUMN_NAME="identificationColumnName";
+    private static final String OUTPUT_CREATION_TEMPLATE="outputCreationTemplate";
 
     private static final Logger logger = LogManager.getLogger(LogicalNodeConfigurationManager.class.getName());
 
@@ -108,6 +110,7 @@ nodeid.propertyname
         //readCriteriaSet();
         constructCriteriaSet();
         readDataSelectionTemplate();
+        readOutputCreationTemplate();
 
     }
 
@@ -281,6 +284,17 @@ nodeid.propertyname
         this.dataSelectionTemplate = stringBuilder.toString().trim();
     }
 
+    // tood: merge with function above.
+    public void readOutputCreationTemplate() throws IOException {
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        List<java.lang.String> lines  = FileUtils.readLines(this.outputCreationTemplatePath.toFile(), StandardCharsets.UTF_8);
+        for (java.lang.String line : lines){
+            stringBuilder.append(line).append(" ");
+        }
+        this.outputCreationTemplate = stringBuilder.toString().trim();
+    }
 }
 
 
