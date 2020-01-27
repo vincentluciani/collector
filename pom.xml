@@ -40,6 +40,9 @@
                               <!--  <fileset>
                                     <directory>${basedir}/src/test/testArtifacts/batch_creation/work</directory>
                                 </fileset> -->
+                                <fileset>
+                                    <directory>${basedir}/src/test/testArtifacts/test_loads_of_batches</directory>
+                                </fileset>
                             </filesets>
                         </configuration>
                     </execution>
@@ -102,6 +105,25 @@
                              <resources>
                                  <resource>
                                      <directory>${basedir}/src/test/testArtifacts/09_batch_creation/work</directory>
+                                     <filtering>false</filtering>
+                                 </resource>
+                             </resources>
+                         </configuration>
+                     </execution>
+                     <execution>
+                         <id>copy-resources-4</id>
+                         <phase>validate</phase>
+                         <goals>
+                             <goal>copy-resources</goal>
+                         </goals>
+                         <configuration>
+                             <includeEmptyDirs>true</includeEmptyDirs>
+                             <overwrite>true</overwrite>
+                             <encoding>UTF-8</encoding>
+                             <outputDirectory>${basedir}/src/test/testArtifacts/10_test_load_of_batches</outputDirectory>
+                             <resources>
+                                 <resource>
+                                     <directory>${basedir}/src/test/testArtifacts/test_load_of_batches</directory>
                                      <filtering>false</filtering>
                                  </resource>
                              </resources>
