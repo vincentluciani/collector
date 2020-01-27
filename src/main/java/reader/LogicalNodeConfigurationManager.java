@@ -76,6 +76,8 @@ nodeid.propertyname
     @Getter private Integer readerBatchSize;
     @Getter private Integer writerBatchSize;
     @Getter private String identificationColumnName;
+    @Getter private Path batchForUploadBasePath;
+    @Getter private String destinationDataPool;
 
     private String logicalNodeID;
     private Path configurationsBasePath;
@@ -99,6 +101,8 @@ nodeid.propertyname
     private static final String WRITER_BATCH_SIZE="writerBatchSize";
     private static final String IDENTIFICATION_COLUMN_NAME="identificationColumnName";
     private static final String OUTPUT_CREATION_TEMPLATE="outputCreationTemplate";
+    private static final String BATCH_FOR_UPLOAD_BASE_PATH="batchForUploadBasePath";
+    private static final String DESTINATION_DATA_POOL="destinationDataPool";
 
     private static final Logger logger = LogManager.getLogger(LogicalNodeConfigurationManager.class.getName());
 
@@ -220,14 +224,17 @@ nodeid.propertyname
 
         this.outputCreationTemplatePath = getPathConfiguration(OUTPUT_SELECTION_TEMPLATE, configuration);
 
+
         this.criteriaParameters = getCriteriaConfiguration(CRITERIA_PARAMETERS,configuration);
         this.criteriaValues = getCriteriaConfiguration(CRITERIA_VALUES,configuration);
         this.outputBasePath = Paths.get(getSimpleParameter(OUTPUT_BASE_PATH,configuration));
+        this.batchForUploadBasePath = Paths.get(getSimpleParameter(BATCH_FOR_UPLOAD_BASE_PATH,configuration));
 
         this.identificationColumnNumber = Integer.valueOf(getSimpleParameter(IDENTIFICATION_NUMBER,configuration));
         this.readerBatchSize = Integer.valueOf(getSimpleParameter(READER_BATCH_SIZE,configuration));
         this.writerBatchSize = Integer.valueOf(getSimpleParameter(WRITER_BATCH_SIZE,configuration));
         this.identificationColumnName = getSimpleParameter(IDENTIFICATION_COLUMN_NAME,configuration);
+        this.destinationDataPool = getSimpleParameter(DESTINATION_DATA_POOL,configuration);
 
     }
 
@@ -294,7 +301,7 @@ nodeid.propertyname
 
         List<java.lang.String> lines  = FileUtils.readLines(this.outputCreationTemplatePath.toFile(), StandardCharsets.UTF_8);
         for (java.lang.String line : lines){
-            stringBuilder.append(line).append(" ");
+            stringBuilder.append(line).append("\n");
         }
         this.outputCreationTemplate = stringBuilder.toString().trim();
     }

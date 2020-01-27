@@ -6,7 +6,10 @@ import reader.LogicalNodeConfigurationManager;
 import writter.BatchCreator;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,22 +28,66 @@ public class BatchCreatorTest
     }
 
     @Test
-    public void checkBatchIsCreated(){
+    public void checkBatchIsCreated() throws IOException {
 
-        String baseDirectory = "C:\\test_java\\collector\\src\\test\\testArtifacts\\09_batch_creation\\work"
-                                + "\\directoryWithNewFiles";
+        String baseDirectory = "C:\\test_java\\collector\\src\\test\\testArtifacts\\batch_creation\\work"
+                                + "\\directoryWithFilesToUpdate";
 
         BatchCreator batchCreator = new BatchCreator("us",baseDirectory,logicalNodeConfigurationManager);
 
-        String batchContent = batchCreator.toString();
+       String expectedContent =
+               "{ \"index\":{\"_id\":\"a3\"}}\n"+
+               "{\"field0\":\"31\",\"field1\":\"32\",\"field2\":\"33\"}\n" +
+               "{ \"index\":{\"_id\":\"a4\"}\n"+
+               "{\"field0\":\"41\",\"field1\":\"42\",\"field2\":\"43\"}\n";
 
-        String expectedContent =
-                "{\"_index\":\"us\",\"_type\":\"products\"}\n"+
-                "{\"update\":{\"id\": \"a1\",\"field0\": \"1\",\"field1\": \"12\",\"field2\": \"13\"}}\n"
-                + "{\"update\":{\"id\": \"a2\",\"field0\": \"2\",\"field1\": \"21\",\"field2\": \"22\"}}\n"
-                + "{\"update\":{\"id\": \"a3\",\"field0\": \"3\",\"field1\": \"31\",\"field2\": \"32\"}}\n";
+        // TODO SHOULD BE index and data underneath and also _id
+        // so I take off the 'update' "_index" : "test" and "_type" is inside url
+        // POST  ..../indexname/typename/_bulk
+        //{ "index" : {  "_id" : "1" } }
+        //{ "field1" : "value1" }
 
+        batchCreator.toFile();
+
+        Path batchPath = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_000_us_products");
+        String batchContent;
+        batchContent = readFile(batchPath.toString(), StandardCharsets.UTF_8);
         assertEquals(expectedContent,batchContent);
+
+
+      String expectedContent2 =
+              "{ \"index\":{\"_id\":\"a5\"}}\n"+
+                      "{\"field0\":\"51\",\"field1\":\"52\",\"field2\":\"53\"}\n" +
+                      "{ \"index\":{\"_id\":\"a6\"}\n"+
+                      "{\"field0\":\"61\",\"field1\":\"62\",\"field2\":\"63\"}\n";
+
+
+        batchCreator.toFile();
+
+        Path batchPath2 = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_001_us_products");
+        String batchContent2 = readFile(batchPath2.toString(), StandardCharsets.UTF_8);
+        assertEquals(expectedContent2,batchContent2);
+
+
+        String expectedContent3 =
+                "{ \"index\":{\"_id\":\"a7\"}}\n"+
+                        "{\"field0\":\"71\",\"field1\":\"72\",\"field2\":\"73\"}\n";
+
+
+        batchCreator.toFile();
+
+        Path batchPath3 = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_002_us_products");
+        String batchContent3 = readFile(batchPath3.toString(), StandardCharsets.UTF_8);
+
+        assertEquals(expectedContent3,batchContent3);
+
+    }
+
+    static String readFile(String path, Charset encoding)
+            throws IOException
+    {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
     }
 }
 // POST _bulk

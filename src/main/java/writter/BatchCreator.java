@@ -3,7 +3,9 @@ package writter;
 import org.apache.commons.io.FileUtils;
 import reader.LogicalNodeConfigurationManager;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
@@ -31,7 +33,7 @@ public class BatchCreator {
     public String logicalNode;
     public Path baseDirectory;
     LogicalNodeConfigurationManager logicalNodeConfigurationManager;
-    private Integer lineInBatchCount=0;
+    public static Integer batchNumber=0;
 
     public BatchCreator(String logicalNode, String baseDirectory, LogicalNodeConfigurationManager logicalNodeConfigurationManager){
         this.logicalNode = logicalNode;
@@ -41,9 +43,10 @@ public class BatchCreator {
 
     public String toString(){
 
-        String batchContent = String.format("{\"_index\":\"%s\",\"_type\":\"products\"}\n",this.logicalNode);
+        String batchContent = "";
         StringBuilder stringBuilder = new StringBuilder(batchContent);
 
+        Integer lineInBatchCount=1;
         try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.baseDirectory)) {
             for (Path currentFile : workingDirectoryStream) {
                 String filename = currentFile.getFileName().toString();
@@ -51,14 +54,21 @@ public class BatchCreator {
                 for (java.lang.String line : lines){
                     JSONBodyCreator jsonBodyCreator = new JSONBodyCreator(filename,
                             this.logicalNodeConfigurationManager.getOutputCreationTemplate(),
-                            line);
+                            line,
+                            "index");
                     stringBuilder.append(jsonBodyCreator.toString()).append("\n");
                 }
-                // TODO: rename the file or delete, or move the file to processed directory
-                if ( this.lineInBatchCount > this.logicalNodeConfigurationManager.getWriterBatchSize()){
+                // Move the file to processed directory
+                FileUtils.moveFile(currentFile.toFile(),logicalNodeConfigurationManager.getBatchForUploadBasePath()
+                        .resolve("work")
+                        .resolve("directoryWithProcessedFiles")
+                        .resolve(currentFile.getFileName())
+                        .toFile());
+
+                if ( lineInBatchCount >= this.logicalNodeConfigurationManager.getWriterBatchSize()){
                     break;
                 }
-                this.lineInBatchCount++;
+                lineInBatchCount++;
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -67,4 +77,38 @@ public class BatchCreator {
         return stringBuilder.toString();
     }
 
+    public void toFile(){
+
+        String stringToOutput = this.toString();
+
+        BufferedWriter writer = null;
+
+        String batchFileName = String.format("batch_%03d_%s_%s", batchNumber,
+                logicalNode,logicalNodeConfigurationManager.getDestinationDataPool());
+
+        batchNumber++;
+        Path batchPath = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve(batchFileName);
+
+        try
+        {
+            writer = new BufferedWriter( new FileWriter( batchPath.toFile() ));
+            writer.write( stringToOutput );
+
+        }
+        catch ( IOException e)
+        {
+        }
+        finally
+        {
+            try
+            {
+                if ( writer != null)
+                    writer.close( );
+            }
+            catch ( IOException e)
+            {
+            }
+        }
+
+    }
 }

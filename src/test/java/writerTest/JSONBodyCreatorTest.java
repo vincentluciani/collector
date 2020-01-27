@@ -21,12 +21,12 @@ public class JSONBodyCreatorTest {
     @Test
     public void checkOutputBasedOnInputString(){
 
-        String inputString="3;2b";
+        String inputString="3;2b;8";
         String outputTemplate = logicalNodeConfigurationManager.getOutputCreationTemplate();
 
-        String expectedOutput="[{\"id\": \"1\",\"field0\": \"3\",\"field1\": \"2b\"]";
+        String expectedOutput="{\"update\":{\"id\":\"1\",\"field0\":\"3\",\"field1\":\"2b\",\"field2\":\"8\"}}";
 
-        JSONBodyCreator jsonBodyCreator = new JSONBodyCreator("1",outputTemplate,inputString);
+        JSONBodyCreator jsonBodyCreator = new JSONBodyCreator("1",outputTemplate,inputString,"update");
         assertEquals(expectedOutput,jsonBodyCreator.toString());
 
     }

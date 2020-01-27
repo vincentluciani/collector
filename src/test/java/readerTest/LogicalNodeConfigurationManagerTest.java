@@ -55,13 +55,22 @@ public class LogicalNodeConfigurationManagerTest {
         assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\output", logicalNodeConfigurationManager.getOutputBasePath().toString());
     }
     @Test
+    public void checkBatchForUploadBasePath(){
+        assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload", logicalNodeConfigurationManager.getBatchForUploadBasePath().toString());
+    }
+    @Test
     public void checkReadBatchSize(){
         assertEquals("1000", logicalNodeConfigurationManager.getReaderBatchSize().toString());
     }
 
     @Test
     public void checkWriterBatchSize(){
-        assertEquals("5000", logicalNodeConfigurationManager.getWriterBatchSize().toString());
+        assertEquals("2", logicalNodeConfigurationManager.getWriterBatchSize().toString());
+    }
+
+    @Test
+    public void checkDestinationDataPool(){
+        assertEquals("products", logicalNodeConfigurationManager.getDestinationDataPool().toString());
     }
 
     @Test
@@ -76,7 +85,7 @@ public class LogicalNodeConfigurationManagerTest {
 
     @Test
     public void checkOutputCreationTemplate(){
-        String expectedTemplate="{\"update\":{\"id\": \"${id}\",\"field0\": \"${0}\",\"field1\": \"${1}\",\"field2\": \"${2}\"}}";
+        String expectedTemplate="{\"${action}\":{\"_id\":\"${id}\"}}\n{\"field0\":\"${0}\",\"field1\":\"${1}\",\"field2\":\"${2}\"}";
         assertEquals(expectedTemplate, logicalNodeConfigurationManager.getOutputCreationTemplate());
     }
 }

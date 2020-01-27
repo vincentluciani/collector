@@ -37,6 +37,9 @@
                                 <fileset>
                                     <directory>${basedir}/src/test/testArtifacts/dispatcher_test_directory_2/work</directory>
                                 </fileset>
+                              <!--  <fileset>
+                                    <directory>${basedir}/src/test/testArtifacts/batch_creation/work</directory>
+                                </fileset> -->
                             </filesets>
                         </configuration>
                     </execution>
@@ -67,7 +70,26 @@
                  </configuration>
                  </execution>
                      <execution>
-                         <id>copy-resources-2</id>
+                     <id>copy-resources-2</id>
+                     <phase>validate</phase>
+                     <goals>
+                         <goal>copy-resources</goal>
+                     </goals>
+                     <configuration>
+                         <includeEmptyDirs>true</includeEmptyDirs>
+                         <overwrite>true</overwrite>
+                         <encoding>UTF-8</encoding>
+                         <outputDirectory>${basedir}/src/test/testArtifacts/dispatcher_test_directory_2/work</outputDirectory>
+                         <resources>
+                             <resource>
+                                 <directory>${basedir}/src/test/testArtifacts/03_directories_with_files_to_dispatch/work</directory>
+                                 <filtering>false</filtering>
+                             </resource>
+                         </resources>
+                     </configuration>
+                 </execution>
+                     <execution>
+                         <id>copy-resources-3</id>
                          <phase>validate</phase>
                          <goals>
                              <goal>copy-resources</goal>
@@ -76,10 +98,10 @@
                              <includeEmptyDirs>true</includeEmptyDirs>
                              <overwrite>true</overwrite>
                              <encoding>UTF-8</encoding>
-                             <outputDirectory>${basedir}/src/test/testArtifacts/dispatcher_test_directory_2/work</outputDirectory>
+                             <outputDirectory>${basedir}/src/test/testArtifacts/batch_creation/work</outputDirectory>
                              <resources>
                                  <resource>
-                                     <directory>${basedir}/src/test/testArtifacts/03_directories_with_files_to_dispatch/work</directory>
+                                     <directory>${basedir}/src/test/testArtifacts/09_batch_creation/work</directory>
                                      <filtering>false</filtering>
                                  </resource>
                              </resources>
