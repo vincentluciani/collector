@@ -36,9 +36,9 @@ public class BatchCreatorTest
         BatchCreator batchCreator = new BatchCreator("us",baseDirectory,logicalNodeConfigurationManager);
 
        String expectedContent =
-               "{ \"index\":{\"_id\":\"a3\"}}\n"+
+               "{\"index\":{\"_id\":\"a3\"}}\n"+
                "{\"field0\":\"31\",\"field1\":\"32\",\"field2\":\"33\"}\n" +
-               "{ \"index\":{\"_id\":\"a4\"}\n"+
+               "{\"index\":{\"_id\":\"a4\"}}\n"+
                "{\"field0\":\"41\",\"field1\":\"42\",\"field2\":\"43\"}\n";
 
         // TODO SHOULD BE index and data underneath and also _id
@@ -56,9 +56,9 @@ public class BatchCreatorTest
 
 
       String expectedContent2 =
-              "{ \"index\":{\"_id\":\"a5\"}}\n"+
+              "{\"index\":{\"_id\":\"a5\"}}\n"+
                       "{\"field0\":\"51\",\"field1\":\"52\",\"field2\":\"53\"}\n" +
-                      "{ \"index\":{\"_id\":\"a6\"}\n"+
+                      "{\"index\":{\"_id\":\"a6\"}}\n"+
                       "{\"field0\":\"61\",\"field1\":\"62\",\"field2\":\"63\"}\n";
 
 
@@ -70,7 +70,7 @@ public class BatchCreatorTest
 
 
         String expectedContent3 =
-                "{ \"index\":{\"_id\":\"a7\"}}\n"+
+                "{\"index\":{\"_id\":\"a7\"}}\n"+
                         "{\"field0\":\"71\",\"field1\":\"72\",\"field2\":\"73\"}\n";
 
 

@@ -1,20 +1,17 @@
 
-nsquid:CommentedOutCodeLine#"<This block of commented-out lines of code should be removed.(ŠÊ¤“ýÿÿÿÿ8Ñ­Ïß÷-
-Fsquid:S1148Y"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Ñ­Ïß÷-
-]squid:UselessImportCheck"3Remove this unused import 'java.io.BufferedWriter'.(¬õº/8¯»Ù¾÷-
-Xsquid:S1141I"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Ñ­Ïß÷-
+±%squid:RedundantThrowsDeclarationCheck!"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(†þµª8Ñ­Ïß÷-
 V
 squid:S1068"9Replace this use of System.out or System.err by a logger.(Œ¹ÅŸ8Ñ­Ïß÷-
-_squid:UselessImportCheck"/Remove this unused import 'java.io.FileWriter'.(Ã‘ÅÃýÿÿÿÿ8¯»Ù¾÷-
-Tsquid:UselessImportCheck")Remove this unused import 'java.io.File'.(†Ð¥Å8¯»Ù¾÷-
-`squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8¯»Ù¾÷-
-Jsquid:S1481F",Remove this unused "counter" local variable.(ŒÂëó8Ñ­Ïß÷-
 jsquid:S2095B"GUse try-with-resources or close this "Statement" in a "finally" clause.(ø¥þÌúÿÿÿÿ8Ñ­Ïß÷-
-Psquid:S1135-"2Complete the task associated to this TODO comment.(‹³íŒ8Ñ­Ïß÷-
-[
-squid:S106N"9Replace this use of System.out or System.err by a logger.(ªÓ¼áþÿÿÿÿ8Ñ­Ïß÷-
-±%squid:RedundantThrowsDeclarationCheck!"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(†þµª8Ñ­Ïß÷-
-:squid:S1643L"Use a StringBuilder instead.(¾Ëš8Ñ­Ïß÷-
-Asquid:S1148T"#Use a logger to log this exception.(Ç’Çê8Ñ­Ïß÷-
+]squid:UselessImportCheck"3Remove this unused import 'java.io.BufferedWriter'.(¬õº/8¯»Ù¾÷-
+Jsquid:S1481F",Remove this unused "counter" local variable.(ŒÂëó8Ñ­Ïß÷-
+`squid:UselessImportCheck"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8¯»Ù¾÷-
 usquid:S1450"WRemove the "metadata" field and declare it as a local variable in the relevant methods.(ï¬ì±8Ñ­Ïß÷-
 bsquid:S1068"?Remove this unused "lastProcessedIdentification" private field.(è§ô¿ûÿÿÿÿ8Ñ­Ïß÷-
+_squid:UselessImportCheck"/Remove this unused import 'java.io.FileWriter'.(Ã‘ÅÃýÿÿÿÿ8¯»Ù¾÷-
+Xsquid:S1141J"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Ñ­Ïß÷-
+Psquid:S1135-"2Complete the task associated to this TODO comment.(‹³íŒ8Ñ­Ïß÷-
+Asquid:S1148]"#Use a logger to log this exception.(Ç’Çê8Ñ­Ïß÷-
+nsquid:CommentedOutCodeLine#"<This block of commented-out lines of code should be removed.(ŠÊ¤“ýÿÿÿÿ8Ñ­Ïß÷-
+Fsquid:S1148b"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8Ñ­Ïß÷-
+Tsquid:UselessImportCheck")Remove this unused import 'java.io.File'.(†Ð¥Å8”ÐŸ­ù-

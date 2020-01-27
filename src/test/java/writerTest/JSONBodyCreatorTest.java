@@ -24,7 +24,7 @@ public class JSONBodyCreatorTest {
         String inputString="3;2b;8";
         String outputTemplate = logicalNodeConfigurationManager.getOutputCreationTemplate();
 
-        String expectedOutput="{\"update\":{\"id\":\"1\",\"field0\":\"3\",\"field1\":\"2b\",\"field2\":\"8\"}}";
+        String expectedOutput="{\"update\":{\"_id\":\"1\"}}\n{\"field0\":\"3\",\"field1\":\"2b\",\"field2\":\"8\"}";
 
         JSONBodyCreator jsonBodyCreator = new JSONBodyCreator("1",outputTemplate,inputString,"update");
         assertEquals(expectedOutput,jsonBodyCreator.toString());

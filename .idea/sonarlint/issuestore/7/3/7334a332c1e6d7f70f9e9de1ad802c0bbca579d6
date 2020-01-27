@@ -1,3 +1,15 @@
 
-isquid:S1854"KRemove this useless assignment to local variable "databaseToFileConverter".(¼®£ƒ8øÀÙÎ÷-
-Zsquid:S1481"<Remove this unused "databaseToFileConverter" local variable.(¼®£ƒ8øÀÙÎ÷-
+hsquid:CommentedOutCodeLineM"<This block of commented-out lines of code should be removed.(É²çG8„Ÿşïù-
+©%squid:RedundantThrowsDeclarationCheck"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(ƒÉ­ôıÿÿÿÿ8„Ÿşïù-
+nsquid:CommentedOutCodeLine4"<This block of commented-out lines of code should be removed.(µÿÜ¢ùÿÿÿÿ8€Îüïù-
+isquid:CommentedOutCodeLine "<This block of commented-out lines of code should be removed.(ö¼±š8Ïüïù-
+esquid:UselessImportCheck";Remove this unused import 'reader.DatabaseToFileConverter'.(ÎçŒB8š¿ƒ¯ù-
+V
+squid:S106E"9Replace this use of System.out or System.err by a logger.(ŸÑ’É8˜í¼ğù-
+ssquid:UselessImportCheck"CRemove this unused import 'reader.LogicalNodeConfigurationManager'.(úî›øûÿÿÿÿ8š¿ƒ¯ù-
+¶%squid:RedundantThrowsDeclarationCheck"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ƒÉ­ôıÿÿÿÿ8„Ÿşïù-
+[
+squid:S1061"9Replace this use of System.out or System.err by a logger.(‰Æîûÿÿÿÿ8‰‡ıïù-
+«%squid:RedundantThrowsDeclarationCheck"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(ƒÉ­ôıÿÿÿÿ8„Ÿşïù-
+[
+squid:S106"9Replace this use of System.out or System.err by a logger.(„¨Û€úÿÿÿÿ8Òˆ¥Äù-

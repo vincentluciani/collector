@@ -58,6 +58,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dispatcher/NewThread.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/DatabaseReader.java">
           <value>
             <set />
@@ -79,6 +84,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/UniversalFileCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/writter/BatchCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/writter/BatchFileCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/writter/JSONBodyCreator.java">
           <value>
             <set />
           </value>
@@ -148,7 +168,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/readerTest/LogicalNodeConfigurationManagerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test/java/readerTest/ReaderConfigurationManagerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/writerTest/BatchCreatorTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/writerTest/JSONBodyCreatorTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/writerTest/checkBatchCreatorTest.java">
           <value>
             <set />
           </value>
@@ -164,6 +204,21 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/resources/log4j2.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/09_batch_creation/work/directoryWithNewFiles/a1.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/09_batch_creation/work/directoryWithNewFiles/a2.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/09_batch_creation/work/directoryWithNewFiles/a3.txt">
           <value>
             <set />
           </value>
@@ -198,6 +253,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/outputCreationTemplate/outputCreationTemplate_234.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test/testArtifacts/configuration/physicalDataSource/physicalDataSource_003.properties">
           <value>
             <set />
@@ -208,7 +268,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/testArtifacts/dispatcher_test_directory_2/work/directoryWithNewFiles/a1.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/target/classes/log4j.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/java/App.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/java/ExcelReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/java/TestSettingsManager.java">
           <value>
             <set />
           </value>
