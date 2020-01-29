@@ -6,6 +6,7 @@ import reader.LogicalNodeConfigurationManager;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 public class batchLoaderTest {
 
@@ -16,10 +17,9 @@ public class batchLoaderTest {
 
         BatchLoader batchLoader = new BatchLoader();
 
-        batchLoader.loadIndividualBatch("batch_000_ar_products");
+        String statusString = batchLoader.loadIndividualBatch("batch_000_ar_products");
 
-        Path statusFilePath = batchLoader.getBatchUploadStatusFilesDirectory().resolve("batch_000_ar_products.status");
-        JSONAnswerAnalyzer jsonAnswerAnalyzer = new JSONAnswerAnalyzer(statusFilePath);
+        JSONAnswerAnalyzer jsonAnswerAnalyzer = new JSONAnswerAnalyzer(statusString);
         /* check: 3 times
         errors: false
         _index: ar
@@ -27,6 +27,10 @@ public class batchLoaderTest {
         result: created or updated
         status:201
          */
+        ArrayList<JSONAnswerAnalyzer.ResultContent> resultContents = jsonAnswerAnalyzer.getJSONContent();
+
+        //assertEquals()
+
 
 /*
 {"took":7, "errors": false, "items":[{"index":{"_index":"test","_type":"_doc","_id":"1","_version":1,"result":"created","forced_refresh":false}}]}

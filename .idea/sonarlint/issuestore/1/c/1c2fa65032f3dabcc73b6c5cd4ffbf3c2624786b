@@ -1,8 +1,8 @@
 
-isquid:S1192¥"JDefine a constant instead of duplicating this literal "common.%s" 3 times.(Ê¤ 8Ş§û¾÷-
-_squid:S1068f"<Remove this unused "OUTPUT_CREATION_TEMPLATE" private field.(À†ªšùÿÿÿÿ8±…ØÅù-
-jsquid:S1192¦"FDefine a constant instead of duplicating this literal "%s.%s" 3 times.(Îğú’úÿÿÿÿ8Ş§û¾÷-
 nsquid:CommentedOutCodeLine1"<This block of commented-out lines of code should be removed.(«å‹øÿÿÿÿ8Ìƒ½÷-
-rsquid:UselessImportCheck"GRemove this unused import 'org.apache.commons.beanutils.PropertyUtils'.(Â„¬œ8Ìƒ½÷-
 squid:UselessImportCheck"eRemove this unused import 'org.apache.commons.configuration2.builder.FileBasedBuilderParametersImpl'.(€ø·“8Ìƒ½÷-
-isquid:CommentedOutCodeLiner"<This block of commented-out lines of code should be removed.(ïÜİÚ8Ìƒ½÷-
+jsquid:S1192¨"FDefine a constant instead of duplicating this literal "%s.%s" 3 times.(Îğú’úÿÿÿÿ8Ş§û¾÷-
+isquid:CommentedOutCodeLinet"<This block of commented-out lines of code should be removed.(ïÜİÚ8Ìƒ½÷-
+rsquid:UselessImportCheck"GRemove this unused import 'org.apache.commons.beanutils.PropertyUtils'.(Â„¬œ8Ìƒ½÷-
+_squid:S1068g"<Remove this unused "OUTPUT_CREATION_TEMPLATE" private field.(À†ªšùÿÿÿÿ8±…ØÅù-
+isquid:S1192§"JDefine a constant instead of duplicating this literal "common.%s" 3 times.(Ê¤ 8Ş§û¾÷-

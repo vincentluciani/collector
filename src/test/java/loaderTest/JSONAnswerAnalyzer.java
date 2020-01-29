@@ -10,57 +10,63 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONString;
+
 public class JSONAnswerAnalyzer {
 
-   // Pattern pattern = Pattern.compile("(.*) (.*);(.*);.*;(.*)");
     //tood: READ JSON
     //https://howtodoinjava.com/library/json-simple-read-write-json-examples/
 
-    private Path jsonFileLocation;
+    private String jsonToAnalyze;
 
-    public JSONAnswerAnalyzer(Path jsonFileLocation){
-        this.jsonFileLocation = jsonFileLocation;
+    public JSONAnswerAnalyzer(String jsonToAnalyze){
+        this.jsonToAnalyze = jsonToAnalyze;
     }
 
-    public ArrayList<JSONAnswerAnalyzer.resultContent> getJSONContent() throws IOException {
+    public ArrayList<JSONAnswerAnalyzer.ResultContent> getJSONContent() throws IOException {
 
-        List<String> lines = FileUtils.readLines(jsonFileLocation.toFile(), "UTF-8");
-        ArrayList<JSONAnswerAnalyzer.resultContent> statusFileContent = new ArrayList<JSONAnswerAnalyzer.resultContent>();
+        ArrayList<JSONAnswerAnalyzer.ResultContent> resultContents = new ArrayList<JSONAnswerAnalyzer.resultContent>();
 
-        for (String line : lines) {
-            Matcher matcher = pattern.matcher(line);
-            JSONAnswerAnalyzer.resultContent resultFileCurrentLine = new JSONAnswerAnalyzer.resultContent();
-            while (matcher.find()) {
-                resultFileCurrentLine.initialize(matcher.group(1),
-                        matcher.group(2),
-                        matcher.group(3),
-                        matcher.group(4));
-            }
-            if (!resultFileCurrentLine.isEmpty()){
-                statusFileContent.add(resultFileCurrentLine);
-            }
+        JSONObject jsonObject = new JSONObject(jsonToAnalyze);
+        JSONArray items = jsonObject.getJSONArray("items");
+        int numberOfItems = items.length();
+
+        for (int i=0; i > numberOfItems; i++){
+            JSONObject currentItem = item.getJSONObject(i);
+            ResultContent currentResult = new ResultContent(
+                            currentItem.getString("_index"),
+                            currentItem.getString("_type"),
+                            currentItem.getString("_id"),
+                            currentItem.getString("result")
+                        );
+            resultContents.add(currentResult);
         }
-        return statusFileContent;
+
+/*
+{"took":7, "errors": false, "items":[{"index":{"_index":"test","_type":"_doc","_id":"1","_version":1,"result":"created","forced_refresh":false}}]}
+ */
+
+        return resultContents;
     }
 
 
-    public class resultContent {
+    public class ResultContent {
         String index;
         String type;
         String result;
         String status;
 
-        public void initialize(String index,String type,String result,String status){
+        public ResultContent(String index,String type,String result,String status){
             this.index = index;
             this.type = type;
             this.result = result;
             this.status = status;
         }
 
-        resultContent(){
-        }
-
-        public boolean isEmpty(){
+    public boolean isEmpty(){
             if ( this.index != null && this.type!=null && this.result!=null && this.status!=null){
                 return false;
             }

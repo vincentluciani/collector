@@ -123,3 +123,7 @@ W
 'src/main/java/writter/BatchCreator.java,2\f\2fd37347b9d64a658c154c98f7117c5900aad12f
 q
 Asrc/test/java/readerTest/LogicalNodeConfigurationManagerTest.java,5\e\5eff5095fdd76c5df4baa68f872044a4c0c4a56a
+`
+0src/test/java/loaderTest/JSONAnswerAnalyzer.java,5\5\554eec5c61ece3bef2ecaa3fb2fe0444913ce9a5
+]
+-src/test/java/loaderTest/batchLoaderTest.java,b\1\b1abb89034eb478b1201c180734d94621ae2f208

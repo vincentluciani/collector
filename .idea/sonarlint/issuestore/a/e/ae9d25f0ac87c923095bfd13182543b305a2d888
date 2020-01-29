@@ -1,5 +1,5 @@
 
-dsquid:S1854+"ARemove this useless assignment to local variable "isNotReadable".(ÞÖ¡«ùÿÿÿÿ8‡åÜšõ-
-Usquid:S1481+"2Remove this unused "isNotReadable" local variable.(ÞÖ¡«ùÿÿÿÿ8‡åÜšõ-
-]squid:S3725-":Replace this with a call to the "toFile().exists()" method(Æ‘åÒÿÿÿÿÿ8»¾û™ù-
 bsquid:S37252"?Replace this with a call to the "toFile().isDirectory()" method(éÁŠâüÿÿÿÿ8»¾û™ù-
+]squid:S3725-":Replace this with a call to the "toFile().exists()" method(Æ‘åÒÿÿÿÿÿ8»¾û™ù-
+Usquid:S1481+"2Remove this unused "isNotReadable" local variable.(ÞÖ¡«ùÿÿÿÿ8‡åÜšõ-
+dsquid:S1854+"ARemove this useless assignment to local variable "isNotReadable".(ÞÖ¡«ùÿÿÿÿ8‡åÜšõ-
