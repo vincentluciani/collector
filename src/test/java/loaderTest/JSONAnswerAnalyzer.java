@@ -26,16 +26,16 @@ public class JSONAnswerAnalyzer {
         this.jsonToAnalyze = jsonToAnalyze;
     }
 
-    public ArrayList<JSONAnswerAnalyzer.ResultContent> getJSONContent() throws IOException {
+    public ArrayList<JSONAnswerAnalyzer.ResultContent> getJSONContent() throws IOException, JSONException {
 
-        ArrayList<JSONAnswerAnalyzer.ResultContent> resultContents = new ArrayList<JSONAnswerAnalyzer.resultContent>();
+        ArrayList<JSONAnswerAnalyzer.ResultContent> resultContents = new ArrayList<JSONAnswerAnalyzer.ResultContent>();
 
         JSONObject jsonObject = new JSONObject(jsonToAnalyze);
         JSONArray items = jsonObject.getJSONArray("items");
         int numberOfItems = items.length();
 
         for (int i=0; i > numberOfItems; i++){
-            JSONObject currentItem = item.getJSONObject(i);
+            JSONObject currentItem = items.getJSONObject(i);
             ResultContent currentResult = new ResultContent(
                             currentItem.getString("_index"),
                             currentItem.getString("_type"),

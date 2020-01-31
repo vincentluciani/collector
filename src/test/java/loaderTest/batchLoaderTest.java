@@ -1,5 +1,6 @@
 package loaderTest;
 
+import loader.BatchLoader;
 import org.junit.Test;
 import reader.LogicalNodeConfigurationManager;
 
@@ -16,8 +17,12 @@ public class batchLoaderTest {
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts"),"ar");
 
         BatchLoader batchLoader = new BatchLoader();
+        String requestBody ="{\"index\":{\"_id\":\"a3\"}}\n" +
+                "{\"field0\":\"31\",\"field1\":\"32\",\"field2\":\"33\"}\n" +
+                "{\"index\":{\"_id\":\"a4\"}}\n" +
+                "{\"field0\":\"41\",\"field1\":\"42\",\"field2\":\"43\"}\n";
 
-        String statusString = batchLoader.loadIndividualBatch("batch_000_ar_products");
+        String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager,"batch_000_ar_products",requestBody,false);
 
         JSONAnswerAnalyzer jsonAnswerAnalyzer = new JSONAnswerAnalyzer(statusString);
         /* check: 3 times

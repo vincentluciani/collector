@@ -57,12 +57,6 @@ esrc/test/testArtifacts/backup/03_directories_with_files_to_dispatch/work/direct
 esrc/test/testArtifacts/backup/03_directories_with_files_to_dispatch/work/directoryWithOldFiles/a3.txt,9\7\97de62b142d9dc339ddfd1f08aa2b8046dbac3ec
 •
 esrc/test/testArtifacts/backup/03_directories_with_files_to_dispatch/work/directoryWithOldFiles/a5.txt,1\1\117a06a0f38beb683e58e1b2efa69da414194917
-„
-Tsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithFilesToAdd/a2.txt,0\a\0a2d423f8922c1800e6f5424890462039a1163a7
-‡
-Wsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithFilesToDelete/a5.txt,4\e\4e6b7b5ac792b6f36b44d5743b1ac3a9f38e91ec
-‡
-Wsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithFilesToUpdate/a3.txt,1\1\11614dcc44ddce4cc082e584056e51d927c5170f
 ‚
 Rsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithNewFiles/a1.txt,2\7\272a00d2d1007b6116c789f2cefd2e12fb173e01
 ‚
@@ -75,12 +69,6 @@ Rsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithOldFiles/a1.
 Rsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithOldFiles/a3.txt,d\1\d136ac2d6f7eb383329c175b256da2d859bbfd3e
 ‚
 Rsrc/test/testArtifacts/dispatcher_test_directory/work/directoryWithOldFiles/a5.txt,6\e\6eccdd4bcf3f3aa2fc9a52ce0da687fbae8a2d78
-†
-Vsrc/test/testArtifacts/dispatcher_test_directory_2/work/directoryWithFilesToAdd/a2.txt,e\c\ec2141eead3a915c423a1abba9cf06a5f8c7420c
-‰
-Ysrc/test/testArtifacts/dispatcher_test_directory_2/work/directoryWithFilesToDelete/a5.txt,9\7\978db9d143e9549527f05a8f89c5673e5f762c60
-‰
-Ysrc/test/testArtifacts/dispatcher_test_directory_2/work/directoryWithFilesToUpdate/a3.txt,9\e\9eff537b56291e7c2a63c6a971d9e19dae68dfa6
 „
 Tsrc/test/testArtifacts/dispatcher_test_directory_2/work/directoryWithNewFiles/a1.txt,9\e\9e8fb3d5cdd1ab2163ec2ffd41916cec2258230c
 „
@@ -127,3 +115,7 @@ Asrc/test/java/readerTest/LogicalNodeConfigurationManagerTest.java,5\e\5eff5095
 0src/test/java/loaderTest/JSONAnswerAnalyzer.java,5\5\554eec5c61ece3bef2ecaa3fb2fe0444913ce9a5
 ]
 -src/test/java/loaderTest/batchLoaderTest.java,b\1\b1abb89034eb478b1201c180734d94621ae2f208
+U
+%src/main/java/loader/BatchLoader.java,1\d\1daecd0857ab8d960280323564447b1ae387d2a2
+T
+$src/main/java/loader/LoadResult.java,b\f\bf3d5230937af09263d6a6e10122b898a9fbde43

@@ -79,7 +79,7 @@ nodeid.propertyname
     @Getter private Path batchForUploadBasePath;
     @Getter private String destinationDataPool;
 
-    private String logicalNodeID;
+    @Getter private String logicalNodeID;
     private Path configurationsBasePath;
 
 
