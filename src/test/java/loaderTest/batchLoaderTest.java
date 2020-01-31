@@ -41,5 +41,8 @@ public class batchLoaderTest {
 {"took":7, "errors": false, "items":[{"index":{"_index":"test","_type":"_doc","_id":"1","_version":1,"result":"created","forced_refresh":false}}]}
  */
 
+/* Real:
+{"took":700,"errors":false,"items":[{"index":{"_index":"ar","_type":"products","_id":"a3","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1,"status":201}},{"index":{"_index":"ar","_type":"products","_id":"a4","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":1,"_primary_term":1,"status":201}}]}
+ */
     }
 }

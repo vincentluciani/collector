@@ -22,7 +22,7 @@ public class BatchLoader {
         HttpURLConnection conn;
         String outputMessage="";
 
-        String url = "https://localhost:9200/"+ logicalNodeConfigurationManager.getLogicalNodeID() + "/"+ logicalNodeConfigurationManager.getDestinationDataPool()+"/_bulk";
+        String url = "http://localhost:9200/"+ logicalNodeConfigurationManager.getLogicalNodeID() + "/"+ logicalNodeConfigurationManager.getDestinationDataPool()+"/_bulk";
         if (isProxy){
 
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("gateway.zscaler.net",80));
