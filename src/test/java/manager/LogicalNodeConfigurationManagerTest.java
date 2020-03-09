@@ -1,8 +1,8 @@
-package readerTest;
+package manager;
 
 import org.junit.Before;
 import org.junit.Test;
-import reader.LogicalNodeConfigurationManager;
+import manager.LogicalNodeConfigurationManager;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -70,7 +70,12 @@ public class LogicalNodeConfigurationManagerTest {
 
     @Test
     public void checkDestinationDataPool(){
-        assertEquals("products", logicalNodeConfigurationManager.getDestinationDataPool().toString());
+        assertEquals("us", logicalNodeConfigurationManager.getDestinationDataPool().toString());
+    }
+
+    @Test
+    public void checkDestinationSubDataPool(){
+        assertEquals("en", logicalNodeConfigurationManager.getDestinationSubDataPool().toString());
     }
 
     @Test

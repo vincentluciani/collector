@@ -1,22 +1,20 @@
 package dispatcher;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Iterator;
 
 public class FilesDispatcher {
 
     private DispatcherConfigurationManager dispatcherConfigurationManager;
     private FileDispatcher fileDispatcher;
+    private static final Logger logger = LogManager.getLogger(FilesDispatcher.class.getName());
 
-    public FilesDispatcher(DispatcherConfigurationManager dispatcherConfigurationManager) throws IOException {
+    public FilesDispatcher(DispatcherConfigurationManager dispatcherConfigurationManager) {
 
         this.dispatcherConfigurationManager = dispatcherConfigurationManager;
 
@@ -34,7 +32,7 @@ public class FilesDispatcher {
 
             }
         } catch (IOException e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
 
     }
@@ -47,7 +45,7 @@ public class FilesDispatcher {
                 this.fileDispatcher.dispatchDeletedFile(currentFileOrDirectory.getFileName());
             }
         } catch (IOException e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
 
     }

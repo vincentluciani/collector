@@ -1,15 +1,18 @@
 package reader;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class UniversalFileCreator {
 
     private Path basePath;
+
+    private static final Logger logger = LogManager.getLogger(UniversalFileCreator.class.getName());
 
     public UniversalFileCreator(Path basePath)  {
         this.basePath = basePath;
@@ -17,15 +20,13 @@ public class UniversalFileCreator {
 
     public void createFile(String row, String fileName) {
 
-        try {
-            Path filePath = this.basePath.resolve(fileName);
-            FileWriter fileWriter = new FileWriter(filePath.toFile(), true);
-            BufferedWriter out = new BufferedWriter(fileWriter);
+        Path filePath = this.basePath.resolve(fileName);
+
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath.toFile(), true))){
             out.write(row);
             out.newLine();
-            out.close();
         }catch (IOException e){
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
     }
 }

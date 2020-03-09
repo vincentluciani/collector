@@ -2,7 +2,7 @@ package writerTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import reader.LogicalNodeConfigurationManager;
+import manager.LogicalNodeConfigurationManager;
 import writter.BatchCreator;
 
 import java.io.IOException;
@@ -11,10 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static junit.framework.TestCase.assertEquals;
 

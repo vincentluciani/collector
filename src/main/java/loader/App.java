@@ -1,32 +1,39 @@
-package dispatcher;
+package loader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import manager.LogicalNodeConfigurationManager;
+
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
 public class App {
 
-    private static final Logger logger = LogManager.getLogger(App.class.getName());
+    private static final Logger logger = LogManager.getLogger(dispatcher.App.class.getName());
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
 
         logger.info("Starting processing main");
         LocalTime startTime = LocalTime.now();
-        String startMessage = String.format("start:%s",startTime.toString());
-        logger.info(startMessage);
+        System.out.println("start:" + startTime.toString());
 
-        NewThread thread1 = new NewThread("myse_id");
-       NewThread thread2 = new NewThread("myse_test");
+        LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"myse_id");
 
-        thread1.thread.join();
-        thread2.thread.join();
+        String baseDirectory = "C:\\test_java\\output2";
+
+        BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager);
+
+        boolean result = batchesLoader.load();
+
 
         logger.info("Ended processing main");
         LocalTime endTime = LocalTime.now();
-        String finishMessage = String.format("finished processing:%s",endTime.toString());
-        logger.info(finishMessage);
+        System.out.println("finished processing"+endTime.toString());
+
 
         Duration durfirst = Duration.between(startTime, endTime);
         long millis = durfirst.toMillis();
@@ -38,7 +45,7 @@ public class App {
                 TimeUnit.MILLISECONDS.toSeconds(millis) -
                         TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
 
-        logger.info(duration1);
+        System.out.println(duration1);
 
     }
 

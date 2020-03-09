@@ -46,6 +46,9 @@
                                 <fileset>
                                     <directory>${basedir}/src/test/testArtifacts/test_loads_of_batches</directory>
                                 </fileset>
+                                <fileset>
+                                    <directory>${basedir}/src/test/testArtifacts/batches_to_upload/work/directoryWithProcessedFiles</directory>
+                                </fileset>
                             </filesets>
                         </configuration>
                     </execution>
@@ -202,7 +205,7 @@
             <artifactId>ojdbc</artifactId>
             <version>8</version>
             <scope>system</scope>
-            <systemPath>C:\test_java\ojdbc8-19.3.0.0.jar</systemPath>
+            <systemPath>C:/test_java/ojdbc8-19.3.0.0.jar</systemPath>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
@@ -217,6 +220,20 @@
             <artifactId>json</artifactId>
             <version>20190722</version>
         </dependency>
+       <!-- <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency> -->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.12.2</version>
+        </dependency>
+
 
     </dependencies>
 

@@ -1,17 +1,15 @@
 package reader;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import manager.LogicalNodeConfigurationManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.sql.*;
 import java.util.Map;
 
-public class DatabaseToFileConverter {
+public class OracleDatabaseReader implements Reader {
 
-    private ResultSetMetaData metadata;
     private int columnCount;
-    String nodeIdentificator;
 
     private Connection connection;
     private String databaseQuery;
@@ -21,18 +19,21 @@ public class DatabaseToFileConverter {
     private String lastProcessedIdentification;
 
     private LogicalNodeConfigurationManager logicalNodeConfigurationManager;
+    private static final Logger logger = LogManager.getLogger(OracleDatabaseReader.class.getName());
 
-    public DatabaseToFileConverter(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String lastProcessedIdentification) throws SQLException, ClassNotFoundException {
+    public OracleDatabaseReader(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String lastProcessedIdentification) throws SQLException {
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
         this.lastProcessedIdentification = lastProcessedIdentification;
         buildDatabaseQuery();
         connectToDatabase();
-        convertRecordsToFiles(lastProcessedIdentification);
     }
 
-    public void connectToDatabase() throws ClassNotFoundException, SQLException {
+    public void readAndOutputToUniversalFile() throws SQLException {
 
-       // Class.forName("oracle.jdbc.driver.OracleDriver");
+        readAndOutputToUniversalFile(this.lastProcessedIdentification);
+    }
+
+    public void connectToDatabase() throws SQLException {
 
         String url =  String.format("jdbc:oracle:thin:@%s:%s:%s",
                 logicalNodeConfigurationManager.getDatabaseHost(),
@@ -50,28 +51,30 @@ public class DatabaseToFileConverter {
     }
 
     public void getMetaData(ResultSet rs) throws SQLException {
+        ResultSetMetaData metadata;
         metadata = rs.getMetaData();
         this.columnCount = metadata.getColumnCount();
         for (int i = 1; i <= columnCount; i++) {
-            System.out.println(metadata.getColumnName(i) + ";");
+            String columnInformation = String.format("%s;",metadata.getColumnName(i));
+            logger.info(columnInformation);
         }
      }
 
-    public void convertRecordsToFiles(String lastIdentificationNumber) {
+    public void readAndOutputToUniversalFile(String lastIdentificationNumber) throws SQLException {
 
-        try {
+
             String query = this.databaseQuery.concat(" and ").concat(this.identificationColumnName)
                     .concat(" > ").concat(lastIdentificationNumber).concat(" order by ")
                     .concat(this.identificationColumnName);
-            Statement stmt = this.connection.createStatement();
+
+        try (Statement stmt = this.connection.createStatement() ){
+
             ResultSet rs = stmt.executeQuery(query);
             getMetaData(rs);
 
-            int counter = 0;
-
             while (rs.next()) {
 
-                try {
+
                     String documentName = rs.getString(this.identificationColumnNumber);
                     String row;
 
@@ -84,18 +87,13 @@ public class DatabaseToFileConverter {
 
                     row=sb.toString();
 
-
-                    counter++;
-                  UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
-                  universalFileCreator.createFile(row,documentName);
+                    UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
+                    universalFileCreator.createFile(row,documentName);
                     this.lastProcessedIdentification = documentName;
-                } catch (SQLException ex) {
-                    ex.printStackTrace();
-                }
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 

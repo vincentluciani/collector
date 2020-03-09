@@ -23,9 +23,12 @@ public class DispatcherConfigurationManagerTest {
     private String expectedErrorMessage;
 
     private DispatcherConfigurationManager dispatcherConfigurationManager;
+    private static File resourcesDirectory = new File("src");
+    private static Path testPath = resourcesDirectory.toPath().resolve("test").resolve("testArtifacts");
 
     // constructor
     public DispatcherConfigurationManagerTest(String baseDirectory, int expectedNumberOfErrors, String expectedErrorMessage){
+
         this.baseDirectory = baseDirectory;
         this.expectedNumberOfErrors = expectedNumberOfErrors;
         this.expectedErrorMessage = expectedErrorMessage;
@@ -35,17 +38,17 @@ public class DispatcherConfigurationManagerTest {
     public static Collection testNumbers(){
         return Arrays.asList(new Object[][]
                 {
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\01_missing_directoryWithOldFiles",1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\01_missing_directoryWithOldFiles\\work\\directoryWithOldFiles"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\00_all_directories_present",0,""},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\02_missing_directoryWithNewFiles",1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\02_missing_directoryWithNewFiles\\work\\directoryWithNewFiles"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\04_directoryWithNewfilesIsFile",1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\04_directoryWithNewfilesIsFile\\work\\directoryWithNewFiles"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\05_directoryWithOldfilesIsFile",1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\05_directoryWithOldfilesIsFile\\work\\directoryWithOldFiles"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\06_missing_directory_update",1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\06_missing_directory_update\\work\\directoryWithFilesToUpdate"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\07_missing_directory_add",1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\07_missing_directory_add\\work\\directoryWithFilesToAdd"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\08_missing_directory_delete",1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\08_missing_directory_delete\\work\\directoryWithFilesToDelete"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\06b_directory_update_is_file",1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\06b_directory_update_is_file\\work\\directoryWithFilesToUpdate"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\07b_directory_add_is_file",1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\07b_directory_add_is_file\\work\\directoryWithFilesToAdd"},
-                        {"C:\\test_java\\collector\\src\\test\\testArtifacts\\08b_directory_delete_is_file",1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\08b_directory_delete_is_file\\work\\directoryWithFilesToDelete"},
+                        {testPath.resolve("01_missing_directoryWithOldFiles").toAbsolutePath().toString(),1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\01_missing_directoryWithOldFiles\\work\\directoryWithOldFiles"},
+                        {testPath.resolve("00_all_directories_present").toAbsolutePath().toString(),0,""},
+                        {testPath.resolve("02_missing_directoryWithNewFiles").toAbsolutePath().toString(),1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\02_missing_directoryWithNewFiles\\work\\directoryWithNewFiles"},
+                        {testPath.resolve("04_directoryWithNewfilesIsFile").toAbsolutePath().toString(),1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\04_directoryWithNewfilesIsFile\\work\\directoryWithNewFiles"},
+                        {testPath.resolve("05_directoryWithOldfilesIsFile").toAbsolutePath().toString(),1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\05_directoryWithOldfilesIsFile\\work\\directoryWithOldFiles"},
+                        {testPath.resolve("06_missing_directory_update").toAbsolutePath().toString(),1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\06_missing_directory_update\\work\\directoryWithFilesToUpdate"},
+                        {testPath.resolve("07_missing_directory_add").toAbsolutePath().toString(),1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\07_missing_directory_add\\work\\directoryWithFilesToAdd"},
+                        {testPath.resolve("08_missing_directory_delete").toAbsolutePath().toString(),1,"Missing directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\08_missing_directory_delete\\work\\directoryWithFilesToDelete"},
+                        {testPath.resolve("06b_directory_update_is_file").toAbsolutePath().toString(),1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\06b_directory_update_is_file\\work\\directoryWithFilesToUpdate"},
+                        {testPath.resolve("07b_directory_add_is_file").toAbsolutePath().toString(),1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\07b_directory_add_is_file\\work\\directoryWithFilesToAdd"},
+                        {testPath.resolve("08b_directory_delete_is_file").toAbsolutePath().toString(),1,"Following is not a directory: C:\\test_java\\collector\\src\\test\\testArtifacts\\08b_directory_delete_is_file\\work\\directoryWithFilesToDelete"},
                         {"C:\\test_javaz",1,"Missing directory: C:\\test_javaz\\work\\directoryWithOldFiles"}
                 });
     }

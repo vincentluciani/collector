@@ -1,11 +1,5 @@
 package writter;
 
-import org.apache.commons.io.FileUtils;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
-
 public class JSONBodyCreator {
 
     String csvContent;

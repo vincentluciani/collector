@@ -9,11 +9,11 @@ public class DispatcherConstantsTest {
 
     @Test
     public void areConstantsSetOK(){
-        assertEquals(DispatcherConstants.DIRECTORY_WITH_OLD_FILES,"work/directoryWithOldFiles");
-        assertEquals(DispatcherConstants.DIRECTORY_WITH_NEW_FILES,"work/directoryWithNewFiles");
-        assertEquals(DispatcherConstants.DIRECTORY_WITH_FILES_TO_DELETE,"work/directoryWithFilesToDelete");
-        assertEquals(DispatcherConstants.DIRECTORY_WITH_FILES_TO_UPDATE,"work/directoryWithFilesToUpdate");
-        assertEquals(DispatcherConstants.DIRECTORY_WITH_FILES_TO_ADD,"work/directoryWithFilesToAdd");
-        assertEquals(DispatcherConstants.DIRECTORY_WITH_LOGS,"logs");
+        assertEquals("work/directoryWithOldFiles",DispatcherConstants.DIRECTORY_WITH_OLD_FILES);
+        assertEquals("work/directoryWithNewFiles",DispatcherConstants.DIRECTORY_WITH_NEW_FILES);
+        assertEquals("work/directoryWithFilesToDelete",DispatcherConstants.DIRECTORY_WITH_FILES_TO_DELETE);
+        assertEquals("work/directoryWithFilesToUpdate", DispatcherConstants.DIRECTORY_WITH_FILES_TO_UPDATE);
+        assertEquals("work/directoryWithFilesToAdd", DispatcherConstants.DIRECTORY_WITH_FILES_TO_ADD);
+        assertEquals("logs", DispatcherConstants.DIRECTORY_WITH_LOGS);
     }
 }

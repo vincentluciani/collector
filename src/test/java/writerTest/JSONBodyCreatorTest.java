@@ -2,7 +2,7 @@ package writerTest;
 
 import org.junit.Before;
 import org.junit.Test;
-import reader.LogicalNodeConfigurationManager;
+import manager.LogicalNodeConfigurationManager;
 import writter.JSONBodyCreator;
 
 import java.io.IOException;

@@ -31,19 +31,36 @@ public class JSONAnswerAnalyzer {
         ArrayList<JSONAnswerAnalyzer.ResultContent> resultContents = new ArrayList<JSONAnswerAnalyzer.ResultContent>();
 
         JSONObject jsonObject = new JSONObject(jsonToAnalyze);
+        boolean errors = jsonObject.getBoolean("errors");
+
         JSONArray items = jsonObject.getJSONArray("items");
+
+
+
         int numberOfItems = items.length();
 
-        for (int i=0; i > numberOfItems; i++){
+        for (int i=0; i < numberOfItems; i++){
             JSONObject currentItem = items.getJSONObject(i);
+
+            JSONObject insideCurrentItem = currentItem.getJSONObject("index");
+            String index = insideCurrentItem.getString("_index");
+            String type = insideCurrentItem.getString("_type");
+            String id = insideCurrentItem.getString("_id");
+            String result = insideCurrentItem.getString("result");
+
             ResultContent currentResult = new ResultContent(
-                            currentItem.getString("_index"),
-                            currentItem.getString("_type"),
-                            currentItem.getString("_id"),
-                            currentItem.getString("result")
+                    index,
+                    type,
+                    id,
+                    errors,
+                    result
                         );
             resultContents.add(currentResult);
         }
+
+        /* Real:
+{"took":700,"errors":false,"items":[{"index":{"_index":"ar","_type":"products","_id":"a3","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1,"status":201}},{"index":{"_index":"ar","_type":"products","_id":"a4","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":1,"_primary_term":1,"status":201}}]}
+ */
 
 /*
 {"took":7, "errors": false, "items":[{"index":{"_index":"test","_type":"_doc","_id":"1","_version":1,"result":"created","forced_refresh":false}}]}
@@ -56,18 +73,20 @@ public class JSONAnswerAnalyzer {
     public class ResultContent {
         String index;
         String type;
+        String id;
+        boolean errors;
         String result;
-        String status;
 
-        public ResultContent(String index,String type,String result,String status){
+        public ResultContent(String index,String type,String id,boolean errors,String result){
             this.index = index;
             this.type = type;
+            this.errors = errors;
+            this.id = id;
             this.result = result;
-            this.status = status;
         }
 
     public boolean isEmpty(){
-            if ( this.index != null && this.type!=null && this.result!=null && this.status!=null){
+            if ( this.index != null && this.type!=null && this.id!=null){
                 return false;
             }
             return true;

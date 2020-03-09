@@ -1,7 +1,11 @@
-package dispatcher;
+package writter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import manager.LogicalNodeConfigurationManager;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
@@ -10,23 +14,28 @@ public class App {
 
     private static final Logger logger = LogManager.getLogger(App.class.getName());
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws  IOException {
 
         logger.info("Starting processing main");
         LocalTime startTime = LocalTime.now();
-        String startMessage = String.format("start:%s",startTime.toString());
-        logger.info(startMessage);
 
-        NewThread thread1 = new NewThread("myse_id");
-       NewThread thread2 = new NewThread("myse_test");
+        String startingMessage = String.format("start:%s",startTime.toString());
+        logger.info(startingMessage);
 
-        thread1.thread.join();
-        thread2.thread.join();
+        LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"myse_id");
+
+        String baseDirectory = "C:\\test_java\\output";
+
+        BatchCreator batchCreator = new BatchCreator("myse_id", baseDirectory, logicalNodeConfigurationManager);
+
+        for (int i=0;i<90;i++) {
+            batchCreator.toFile();
+         }
 
         logger.info("Ended processing main");
         LocalTime endTime = LocalTime.now();
-        String finishMessage = String.format("finished processing:%s",endTime.toString());
-        logger.info(finishMessage);
+        String endMessage = String.format("finished processing: %s",endTime.toString());
+        logger.info(endMessage);
 
         Duration durfirst = Duration.between(startTime, endTime);
         long millis = durfirst.toMillis();

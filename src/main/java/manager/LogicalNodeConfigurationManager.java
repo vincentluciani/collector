@@ -1,21 +1,47 @@
-package reader;
+/* A readerConfigurationManager manages the configurations for one logical node
+ logicalNode uses:
+  - one physicalDataSource
+  - one criteriaSet (can be one or more in the future)
+  - one dataSelectionTemplate
+  - one outputCreationTemplate
+
+ Naming convention: ${configuration file type}_${id}.properties
+ Example:  dataSelectionTemplate_0001.properties
+
+ all configuration files are in a folder called configurations that sits on the basePath
+ ${configurationsBasePath}/configurations/logicalNode/logicalNode.properties
+     common.physicalDataSource=1
+     common.dataSelectionTemplate=1
+     common.outputCreationTemplate=1
+ ${configurationsBasePath}/configuration/physicalDataSource/physicalDataSource_001.properties
+ ${configurationsBasePath}/configuration/criteriaSet/criteriaSet_001.properties
+ criteriaparametername1=criteriaparameternamevalue1
+ criteriaparametername2=criteriaparameternamevalue2
+ ${configurationsBasePath}/configuration/dataSelectionTemplate/dataSelectionTemplate_001.properties
+ will contain criteria parameter ${criteriaparametername1} ${criteriaparametername2}
+ ${configurationsBasePath}/configuration/outputCreationTemplate/outputCreationTemplate_001.properties
+
+contains
+default.propertyname
+nodeid.propertyname
+
+
+ * */
+
+package manager;
 
 import lombok.Getter;
 import org.apache.commons.configuration2.Configuration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
-import org.apache.commons.configuration2.builder.FileBasedBuilderParametersImpl;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 // must add this import and get the corresponding maven dependency
-import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -26,35 +52,7 @@ import java.util.*;
 
 public class LogicalNodeConfigurationManager {
 
-    /* A readerConfigurationManager manages the configurations for one logical node
-    logicalNode uses:
-     - one physicalDataSource
-     - one criteriaSet (can be one or more in the future)
-     - one dataSelectionTemplate
-     - one outputCreationTemplate
 
-    Naming convention: ${configuration file type}_${id}.properties
-    Example:  dataSelectionTemplate_0001.properties
-
-    all configuration files are in a folder called configurations that sits on the basePath
-    ${configurationsBasePath}/configurations/logicalNode/logicalNode.properties
-        common.physicalDataSource=1
-        common.dataSelectionTemplate=1
-        common.outputCreationTemplate=1
-    ${configurationsBasePath}/configuration/physicalDataSource/physicalDataSource_001.properties
-    ${configurationsBasePath}/configuration/criteriaSet/criteriaSet_001.properties
-    criteriaparametername1=criteriaparameternamevalue1
-    criteriaparametername2=criteriaparameternamevalue2
-    ${configurationsBasePath}/configuration/dataSelectionTemplate/dataSelectionTemplate_001.properties
-    will contain criteria parameter ${criteriaparametername1} ${criteriaparametername2}
-    ${configurationsBasePath}/configuration/outputCreationTemplate/outputCreationTemplate_001.properties
-
-contains
-default.propertyname
-nodeid.propertyname
-
-
-    * */
     @Getter private Path logicalNodeConfigurationPath;
     @Getter private Path physicalDataSourceConfigurationPath;
     @Getter private Path criteriaSetConfigurationPath;
@@ -78,6 +76,7 @@ nodeid.propertyname
     @Getter private String identificationColumnName;
     @Getter private Path batchForUploadBasePath;
     @Getter private String destinationDataPool;
+    @Getter private String destinationSubDataPool;
 
     @Getter private String logicalNodeID;
     private Path configurationsBasePath;
@@ -92,6 +91,8 @@ nodeid.propertyname
     private static final String DATA_SELECTION_TEMPLATE="dataSelectionTemplate";
     private static final String OUTPUT_SELECTION_TEMPLATE="outputCreationTemplate";
     private static final String FILE_NAME_FORMAT = "%s_%03d.%s";
+    private static final String COMMON_PARAMETER_FORMAT = "common.%s";
+    private static final String PARAMETER_FORMAT = "%s.%s";
     private static final String CONFIGURATION="configuration";
     private static final String CRITERIA_PARAMETERS="criteriaParameters";
     private static final String CRITERIA_VALUES="criteriaValues";
@@ -100,9 +101,9 @@ nodeid.propertyname
     private static final String READER_BATCH_SIZE="readerBatchSize";
     private static final String WRITER_BATCH_SIZE="writerBatchSize";
     private static final String IDENTIFICATION_COLUMN_NAME="identificationColumnName";
-    private static final String OUTPUT_CREATION_TEMPLATE="outputCreationTemplate";
     private static final String BATCH_FOR_UPLOAD_BASE_PATH="batchForUploadBasePath";
     private static final String DESTINATION_DATA_POOL="destinationDataPool";
+    private static final String DESTINATION_SUB_DATA_POOL="destinationSubDataPool";
 
     private static final Logger logger = LogManager.getLogger(LogicalNodeConfigurationManager.class.getName());
 
@@ -113,7 +114,6 @@ nodeid.propertyname
 
         readLogicalNodeConfigurationPaths();
         readPhysicalSourceProperties();
-        //readCriteriaSet();
         constructCriteriaSet();
         readDataSelectionTemplate();
         readOutputCreationTemplate();
@@ -164,8 +164,8 @@ nodeid.propertyname
     public Path getPathConfiguration(String configurationType, Configuration configuration){
 
         Path pathConfiguration;
-        String commonParameter = String.format("common.%s",configurationType);
-        String nodeParameter = String.format("%s.%s",this.logicalNodeID,configurationType);
+        String commonParameter = String.format(COMMON_PARAMETER_FORMAT,configurationType);
+        String nodeParameter = String.format(PARAMETER_FORMAT,this.logicalNodeID,configurationType);
         Object nodeParameterValue = configuration.getProperty(nodeParameter);
         String parameterValue;
 
@@ -184,8 +184,8 @@ nodeid.propertyname
     public List<Object> getCriteriaConfiguration(String configurationType, Configuration configuration){
 
         List<Object> criteriaConfiguration;
-        String commonParameter = String.format("common.%s",configurationType);
-        String nodeParameter = String.format("%s.%s",this.logicalNodeID,configurationType);
+        String commonParameter = String.format(COMMON_PARAMETER_FORMAT,configurationType);
+        String nodeParameter = String.format(PARAMETER_FORMAT,this.logicalNodeID,configurationType);
 
         Object nodeParameterValue = configuration.getProperty(nodeParameter);
 
@@ -200,8 +200,8 @@ nodeid.propertyname
     public String getSimpleParameter(String configurationType, Configuration configuration){
 
         String parameterValue;
-        String commonParameter = String.format("common.%s",configurationType);
-        String nodeParameter = String.format("%s.%s",this.logicalNodeID,configurationType);
+        String commonParameter = String.format(COMMON_PARAMETER_FORMAT,configurationType);
+        String nodeParameter = String.format(PARAMETER_FORMAT,this.logicalNodeID,configurationType);
 
         Object nodeParameterValue = configuration.getProperty(nodeParameter);
         Object commonParameterValue =  configuration.getProperty(commonParameter);
@@ -235,7 +235,7 @@ nodeid.propertyname
         this.writerBatchSize = Integer.valueOf(getSimpleParameter(WRITER_BATCH_SIZE,configuration));
         this.identificationColumnName = getSimpleParameter(IDENTIFICATION_COLUMN_NAME,configuration);
         this.destinationDataPool = getSimpleParameter(DESTINATION_DATA_POOL,configuration);
-
+        this.destinationSubDataPool = getSimpleParameter(DESTINATION_SUB_DATA_POOL,configuration);
     }
 
     public void readPhysicalSourceProperties(){

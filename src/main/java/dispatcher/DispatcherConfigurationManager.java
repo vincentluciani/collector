@@ -1,6 +1,5 @@
 package dispatcher;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import lombok.Getter;
@@ -27,7 +26,6 @@ public class DispatcherConfigurationManager {
     }
 
     private void constructDispatcherDirectoryStructure(){
-
         this.directoryWithOldFiles          = this.baseDirectory.resolve(DispatcherConstants.DIRECTORY_WITH_OLD_FILES);
         this.directoryWithNewFiles          = this.baseDirectory.resolve(DispatcherConstants.DIRECTORY_WITH_NEW_FILES);
         this.directoryWithFilesToDelete     = this.baseDirectory.resolve(DispatcherConstants.DIRECTORY_WITH_FILES_TO_DELETE);
@@ -37,17 +35,15 @@ public class DispatcherConfigurationManager {
     }
 
     private boolean validateDirectory(Path directoryToValidate){
-
         String missingDirectoryMessage =  String.format("Missing directory: %s",directoryToValidate);
         String isNotADirectoryMessage =   String.format("Following is not a directory: %s",directoryToValidate);
-        String isNotReadable =   String.format("Following directory is not readable: %s",directoryToValidate);
 
-        if (!Files.exists(directoryToValidate)){
+        if (!directoryToValidate.toFile().exists()){
             logger.error(missingDirectoryMessage);
             return false;
         }
 
-        if (!Files.isDirectory(directoryToValidate)){
+        if (!directoryToValidate.toFile().isDirectory()){
             logger.error(isNotADirectoryMessage);
             return false;
         }

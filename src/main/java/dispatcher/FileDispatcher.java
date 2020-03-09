@@ -2,7 +2,6 @@ package dispatcher;
 
 import org.apache.commons.io.FileUtils;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class FileDispatcher {
@@ -18,9 +17,9 @@ public class FileDispatcher {
         Path fileInNewDirectory = this.dispatcherConfigurationManager.getDirectoryWithNewFiles().resolve(fileToCompare);
         Path fileInOldDirectory = this.dispatcherConfigurationManager.getDirectoryWithOldFiles().resolve(fileToCompare);
 
-        if (!Files.exists(fileInOldDirectory)) {
+        if (!fileInOldDirectory.toFile().exists()) {
             FileUtils.copyFile(fileInNewDirectory.toFile(), this.dispatcherConfigurationManager.getDirectoryWithFilesToAdd().resolve(fileToCompare).toFile());
-        } else if (Files.exists(fileInNewDirectory) && !FileUtils.contentEquals(fileInOldDirectory.toFile(), fileInNewDirectory.toFile())) {
+        } else if (fileInNewDirectory.toFile().exists() && !FileUtils.contentEquals(fileInOldDirectory.toFile(), fileInNewDirectory.toFile())) {
             FileUtils.copyFile(fileInNewDirectory.toFile(), this.dispatcherConfigurationManager.getDirectoryWithFilesToUpdate().resolve(fileToCompare).toFile());
         }
 
@@ -30,7 +29,7 @@ public class FileDispatcher {
         Path fileInNewDirectory = this.dispatcherConfigurationManager.getDirectoryWithNewFiles().resolve(fileToCompare);
         Path fileInOldDirectory = this.dispatcherConfigurationManager.getDirectoryWithOldFiles().resolve(fileToCompare);
 
-        if (!Files.exists(fileInNewDirectory)) {
+        if (!fileInNewDirectory.toFile().exists()) {
             FileUtils.copyFile(fileInOldDirectory.toFile(), this.dispatcherConfigurationManager.getDirectoryWithFilesToDelete().resolve(fileToCompare).toFile());
         }
 

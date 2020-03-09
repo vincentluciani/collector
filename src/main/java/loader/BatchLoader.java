@@ -1,7 +1,7 @@
 package loader;
 /* https://spring.io/guides/gs/consuming-rest/ */
 
-import reader.LogicalNodeConfigurationManager;
+import manager.LogicalNodeConfigurationManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,18 +11,12 @@ import java.net.*;
 
 public class BatchLoader {
 
-    public BatchLoader(){
-
-    }
-
-    public String loadIndividualBatch(LogicalNodeConfigurationManager logicalNodeConfigurationManager,String batchName, String requestBody, boolean isProxy) throws IOException {
-
-        //https://www.baeldung.com/httpurlconnection-post
+    public String loadIndividualBatch(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String requestBody, boolean isProxy) throws IOException {
 
         HttpURLConnection conn;
         String outputMessage="";
 
-        String url = "http://localhost:9200/"+ logicalNodeConfigurationManager.getLogicalNodeID() + "/"+ logicalNodeConfigurationManager.getDestinationDataPool()+"/_bulk";
+        String url = "http://localhost:9200/"+ logicalNodeConfigurationManager.getDestinationDataPool() + "/"+ logicalNodeConfigurationManager.getDestinationSubDataPool()+"/_bulk";
         if (isProxy){
 
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("gateway.zscaler.net",80));
@@ -42,8 +36,6 @@ public class BatchLoader {
             byte[] input = requestBody.getBytes("utf-8");
             os.write(input, 0, input.length);
         }
-
-        InputStreamReader inputStreamReader = new InputStreamReader((conn.getInputStream()));
 
         try(BufferedReader br = new BufferedReader(
                 new InputStreamReader(conn.getInputStream(), "utf-8"))) {

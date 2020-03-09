@@ -1,10 +1,25 @@
+/*
+ POST /_bulk
+ {"_index":nodeId,"_type":"product"}
+ ....
+ {"delete":{"_index":nodeId,"_type":"product","_id":get from filename}}\n
+ {"update":{"_index":nodeId,"_type":"product","_id":get from filename}}\n
+ {"column":value}\n
+
+ bulk between 1000 and 5000 docs
+
+ [{"id": "653767","autnReference": "22936326_DA","reference": "22936326_DA","idolTitle": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål","keywords": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål","openUrl": "","openUrl_original": null,"image": "","contentCategory": "PRODUCT","contentCategoryName": null,"dreDate": "","title": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål","highlightedTitle": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål"}]
+
+  */
+
 package writter;
 
 import org.apache.commons.io.FileUtils;
-import reader.LogicalNodeConfigurationManager;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import manager.LogicalNodeConfigurationManager;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,24 +31,12 @@ import java.util.List;
 
 public class BatchCreator {
 
-    /*
-    POST /_bulk
-    {"_index":nodeId,"_type":"product"}
-    ....
-    {"delete":{"_index":nodeId,"_type":"product","_id":get from filename}}\n
-    {"update":{"_index":nodeId,"_type":"product","_id":get from filename}}\n
-    {"column":value}\n
-
-    bulk between 1000 and 5000 docs
-
-    [{"id": "653767","autnReference": "22936326_DA","reference": "22936326_DA","idolTitle": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål","keywords": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål","openUrl": "","openUrl_original": null,"image": "","contentCategory": "PRODUCT","contentCategoryName": null,"dreDate": "","title": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål","highlightedTitle": "KSA1000DLC4CF |3606480003530|7514016758|Vinkel 1000A flad m/brt. på mål"}]
-
-     */
-
-    public String logicalNode;
-    public Path baseDirectory;
+    private String logicalNode;
+    private Path baseDirectory;
     LogicalNodeConfigurationManager logicalNodeConfigurationManager;
-    public static Integer batchNumber=0;
+    private static Integer batchNumber=0;
+
+    private static final Logger logger = LogManager.getLogger(BatchCreator.class.getName());
 
     public BatchCreator(String logicalNode, String baseDirectory, LogicalNodeConfigurationManager logicalNodeConfigurationManager){
         this.logicalNode = logicalNode;
@@ -71,17 +74,15 @@ public class BatchCreator {
                 lineInBatchCount++;
             }
         } catch (IOException e) {
-            System.out.println(e);
+            logger.error(e.getMessage());
         }
 
         return stringBuilder.toString();
     }
 
-    public void toFile(){
+    public void toFile() throws IOException {
 
         String stringToOutput = this.toString();
-
-        BufferedWriter writer = null;
 
         String batchFileName = String.format("batch_%03d_%s_%s", batchNumber,
                 logicalNode,logicalNodeConfigurationManager.getDestinationDataPool());
@@ -89,26 +90,15 @@ public class BatchCreator {
         batchNumber++;
         Path batchPath = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve(batchFileName);
 
-        try
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(batchPath.toFile())))
         {
-            writer = new BufferedWriter( new FileWriter( batchPath.toFile() ));
             writer.write( stringToOutput );
-
         }
         catch ( IOException e)
         {
+            logger.error(e.getMessage());
         }
-        finally
-        {
-            try
-            {
-                if ( writer != null)
-                    writer.close( );
-            }
-            catch ( IOException e)
-            {
-            }
-        }
+
 
     }
 }

@@ -1,15 +1,19 @@
 package loaderTest;
 
 import loader.BatchLoader;
+import org.junit.Assert;
 import org.junit.Test;
-import reader.LogicalNodeConfigurationManager;
+import manager.LogicalNodeConfigurationManager;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
-public class batchLoaderTest {
+import static org.junit.Assert.assertEquals;
+
+public class BatchLoaderTest {
 
     @Test
     public void loadBatchToElastic() throws IOException {
@@ -22,7 +26,7 @@ public class batchLoaderTest {
                 "{\"index\":{\"_id\":\"a4\"}}\n" +
                 "{\"field0\":\"41\",\"field1\":\"42\",\"field2\":\"43\"}\n";
 
-        String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager,"batch_000_ar_products",requestBody,false);
+        String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager,requestBody,false);
 
         JSONAnswerAnalyzer jsonAnswerAnalyzer = new JSONAnswerAnalyzer(statusString);
         /* check: 3 times
@@ -34,7 +38,32 @@ public class batchLoaderTest {
          */
         ArrayList<JSONAnswerAnalyzer.ResultContent> resultContents = jsonAnswerAnalyzer.getJSONContent();
 
-        //assertEquals()
+        String firstIndex = resultContents.get(0).index;
+        String firstType = resultContents.get(0).type;
+        String firstId= resultContents.get(0).id;
+        boolean firstError= resultContents.get(0).errors;
+        String firstResult = resultContents.get(0).result;
+
+        assertEquals("ar",firstIndex);
+        assertEquals("es",firstType);
+
+        Set<String> firstErrorPossibleAnswers = new HashSet<>();
+        firstErrorPossibleAnswers.add("created");
+        firstErrorPossibleAnswers.add("updated");
+        Assert.assertTrue(firstErrorPossibleAnswers.contains(firstResult));
+        assertEquals(false,firstError);
+
+        String secondIndex = resultContents.get(1).index;
+        String secondType = resultContents.get(1).type;
+        String secondId= resultContents.get(1).id;
+        boolean secondError= resultContents.get(1).errors;
+        String secondResult = resultContents.get(0).result;
+
+        assertEquals("ar",secondIndex);
+        assertEquals("es",secondType);
+
+        Assert.assertTrue(firstErrorPossibleAnswers.contains(secondResult));
+        assertEquals(false,secondError);
 
 
 /*
