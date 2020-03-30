@@ -85,8 +85,7 @@ public class BatchCreator {
         String stringToOutput = this.toString();
 
         String batchFileName = String.format("batch_%03d_%s_%s", batchNumber,
-                logicalNode,logicalNodeConfigurationManager.getDestinationDataPool());
-
+                logicalNode,logicalNodeConfigurationManager.getDestinationSubDataPool());
         batchNumber++;
         Path batchPath = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve(batchFileName);
 

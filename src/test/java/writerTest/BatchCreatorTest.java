@@ -45,7 +45,7 @@ public class BatchCreatorTest
 
         batchCreator.toFile();
 
-        Path batchPath = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_000_us_products");
+        Path batchPath = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_000_us_en");
         String batchContent;
         batchContent = readFile(batchPath.toString(), StandardCharsets.UTF_8);
         assertEquals(expectedContent,batchContent);
@@ -60,7 +60,7 @@ public class BatchCreatorTest
 
         batchCreator.toFile();
 
-        Path batchPath2 = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_001_us_products");
+        Path batchPath2 = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_001_us_en");
         String batchContent2 = readFile(batchPath2.toString(), StandardCharsets.UTF_8);
         assertEquals(expectedContent2,batchContent2);
 
@@ -72,7 +72,7 @@ public class BatchCreatorTest
 
         batchCreator.toFile();
 
-        Path batchPath3 = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_002_us_products");
+        Path batchPath3 = Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload\\batch_002_us_en");
         String batchContent3 = readFile(batchPath3.toString(), StandardCharsets.UTF_8);
 
         assertEquals(expectedContent3,batchContent3);
