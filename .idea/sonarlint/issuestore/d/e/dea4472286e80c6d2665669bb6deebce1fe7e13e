@@ -1,12 +1,0 @@
-
-V
-squid:S106"9Replace this use of System.out or System.err by a logger.( óù8¢·ô®ù-
-V
-squid:S106"9Replace this use of System.out or System.err by a logger.(Ì®•8œÄú®ù-
-Fsquid:S1148!"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8–ç…¯ù-
-Ysquid:S1481"<Remove this unused "databaseToFileConverter" local variable.(õ–e8–ç…¯ù-
-bsquid:S2147 "DCombine this catch with the one at line 30, which has the same body.(ıàÑÎ8–ç…¯ù-
-hsquid:S1854"KRemove this useless assignment to local variable "databaseToFileConverter".(õ–e8–ç…¯ù-
-[
-squid:S106#"9Replace this use of System.out or System.err by a logger.(ÚŸæ©ûÿÿÿÿ8‹‚¯ù-
-Fsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8–ç…¯ù-

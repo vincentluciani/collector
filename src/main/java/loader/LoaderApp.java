@@ -1,5 +1,6 @@
 package loader;
 
+import dispatcher.DispatcherApp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import manager.LogicalNodeConfigurationManager;
@@ -11,9 +12,9 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
-public class App {
+public class LoaderApp {
 
-    private static final Logger logger = LogManager.getLogger(dispatcher.App.class.getName());
+    private static final Logger logger = LogManager.getLogger(DispatcherApp.class.getName());
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException, IOException, InterruptedException {
 

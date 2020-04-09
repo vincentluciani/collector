@@ -1,7 +1,0 @@
-
-[squid:UselessImportCheck"0Remove this unused import 'java.nio.file.Paths'.(בט°¯8¿¹ƒֿק-
-[
-squid:S106"9Replace this use of System.out or System.err by a logger.(¨¶ֽׁ‏ÿÿÿÿ8–ÿב־ק-
-ksquid:S2095"HUse try-with-resources or close this "FileWriter" in a "finally" clause.(½‚ׂ‏ÿÿÿÿ8–ÿב־ק-
-jsquid:S2095"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Þַ8–ÿב־ק-
-Tsquid:UselessImportCheck")Remove this unused import 'java.io.File'.(†׀¥ֵ8–ÿב־ק-

@@ -38,6 +38,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/dispatcher/DispatcherApp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/dispatcher/DispatcherConfigurationManager.java">
           <value>
             <set />
@@ -83,6 +88,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/ExcelReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/HTMLReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/LogicalNodeConfigurationManager.java">
           <value>
             <set />
@@ -93,7 +108,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/ReadingExcelApp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/UniversalFileCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/wikiFilmReader/Entity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/wikiFilmReader/HTMLReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/writter/App.java">
           <value>
             <set />
           </value>
@@ -109,6 +144,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/writter/JSONBodyCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/writter/writterApp.java">
           <value>
             <set />
           </value>
@@ -188,6 +228,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/readerTest/HTMLReaderTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/test/java/readerTest/JSONAnswerAnalyzer.java">
           <value>
             <set />
@@ -199,6 +244,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/readerTest/ReaderConfigurationManagerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/readerTest/wikiFilmReader/HTMLReaderTest.java">
           <value>
             <set />
           </value>

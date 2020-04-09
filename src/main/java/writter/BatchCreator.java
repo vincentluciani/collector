@@ -20,6 +20,7 @@ import org.apache.logging.log4j.Logger;
 import manager.LogicalNodeConfigurationManager;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -27,6 +28,8 @@ import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class BatchCreator {
@@ -35,6 +38,7 @@ public class BatchCreator {
     private Path baseDirectory;
     LogicalNodeConfigurationManager logicalNodeConfigurationManager;
     private static Integer batchNumber=0;
+    private Collection<Path> currentFilesUsedForBatch = new ArrayList<Path>();
 
     private static final Logger logger = LogManager.getLogger(BatchCreator.class.getName());
 
@@ -44,7 +48,7 @@ public class BatchCreator {
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
     }
 
-    public String toString(){
+    public String putContainOfInputInString(){
 
         String batchContent = "";
         StringBuilder stringBuilder = new StringBuilder(batchContent);
@@ -61,12 +65,8 @@ public class BatchCreator {
                             "index");
                     stringBuilder.append(jsonBodyCreator.toString()).append("\n");
                 }
-                // Move the file to processed directory
-                FileUtils.moveFile(currentFile.toFile(),logicalNodeConfigurationManager.getBatchForUploadBasePath()
-                        .resolve("work")
-                        .resolve("directoryWithProcessedFiles")
-                        .resolve(currentFile.getFileName())
-                        .toFile());
+                this.currentFilesUsedForBatch.add(currentFile);
+
 
                 if ( lineInBatchCount >= this.logicalNodeConfigurationManager.getWriterBatchSize()){
                     break;
@@ -75,6 +75,7 @@ public class BatchCreator {
             }
         } catch (IOException e) {
             logger.error(e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         return stringBuilder.toString();
@@ -82,7 +83,7 @@ public class BatchCreator {
 
     public void toFile() throws IOException {
 
-        String stringToOutput = this.toString();
+        String stringToOutput = this.putContainOfInputInString();
 
         String batchFileName = String.format("batch_%03d_%s_%s", batchNumber,
                 logicalNode,logicalNodeConfigurationManager.getDestinationSubDataPool());
@@ -98,6 +99,17 @@ public class BatchCreator {
             logger.error(e.getMessage());
         }
 
+        for (Path currentFileName : this.currentFilesUsedForBatch)
+        {
+            // Move the file to processed directory
+            File targetFileName = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve("work")
+                    .resolve("directoryWithProcessedFiles")
+                    .resolve(currentFileName)
+                    .toFile();
 
+            FileUtils.moveFile(currentFileName.toFile(), targetFileName);
+        }
+
+        this.currentFilesUsedForBatch.clear();
     }
 }

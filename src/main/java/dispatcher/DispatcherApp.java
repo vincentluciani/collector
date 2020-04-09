@@ -1,41 +1,32 @@
-package writter;
+package dispatcher;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import manager.LogicalNodeConfigurationManager;
-
-import java.io.IOException;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
-public class App {
+public class DispatcherApp {
 
-    private static final Logger logger = LogManager.getLogger(App.class.getName());
+    private static final Logger logger = LogManager.getLogger(DispatcherApp.class.getName());
 
-    public static void main(String[] args) throws  IOException {
+    public static void main(String[] args) throws InterruptedException {
 
         logger.info("Starting processing main");
         LocalTime startTime = LocalTime.now();
+        String startMessage = String.format("start:%s",startTime.toString());
+        logger.info(startMessage);
 
-        String startingMessage = String.format("start:%s",startTime.toString());
-        logger.info(startingMessage);
+        NewThread thread1 = new NewThread("id_ID");
+        NewThread thread2 = new NewThread("en_ID");
 
-        LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"myse_id");
-
-        String baseDirectory = "C:\\test_java\\output";
-
-        BatchCreator batchCreator = new BatchCreator("myse_id", baseDirectory, logicalNodeConfigurationManager);
-
-        for (int i=0;i<90;i++) {
-            batchCreator.toFile();
-         }
+        thread1.thread.join();
+        thread2.thread.join();
 
         logger.info("Ended processing main");
         LocalTime endTime = LocalTime.now();
-        String endMessage = String.format("finished processing: %s",endTime.toString());
-        logger.info(endMessage);
+        String finishMessage = String.format("finished processing:%s",endTime.toString());
+        logger.info(finishMessage);
 
         Duration durfirst = Duration.between(startTime, endTime);
         long millis = durfirst.toMillis();
