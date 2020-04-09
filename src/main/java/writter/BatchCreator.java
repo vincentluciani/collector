@@ -104,10 +104,10 @@ public class BatchCreator {
             // Move the file to processed directory
             File targetFileName = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve("work")
                     .resolve("directoryWithProcessedFiles")
-                    .resolve(currentFileName)
+                    .resolve(currentFileName.getFileName())
                     .toFile();
 
-            FileUtils.moveFile(currentFileName.toFile(), targetFileName);
+            FileUtils. moveFile(currentFileName.toFile(), targetFileName);
         }
 
         this.currentFilesUsedForBatch.clear();
