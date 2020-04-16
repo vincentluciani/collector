@@ -1,4 +1,4 @@
-package reader.wikiFilmReader;
+package reader.wikiReader;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,5 +1,5 @@
 // https://stackoverflow.com/questions/24772828/how-to-parse-html-table-using-jsoup
-package reader.wikiFilmReader;
+package reader.wikiReader;
 
 import lombok.Getter;
 import org.jsoup.HttpStatusException;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HTMLReader {
+public class WebPageReader {
 
     Document HTMLDocument;
 
@@ -58,7 +58,7 @@ public class HTMLReader {
 
     private static final String PLOT = "plot";
 
-    public HTMLReader(String url) throws IOException {
+    public WebPageReader(String url) throws IOException {
         try {
             HTMLDocument = Jsoup.connect(url).get();
         } catch (HttpStatusException ex) {

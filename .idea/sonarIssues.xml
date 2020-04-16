@@ -123,12 +123,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/websiteReader/Entity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/websiteReader/HTMLReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/websiteReader/SitemapReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/wikiFilmReader/Entity.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/wikiFilmReader/HTMLReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/wikiReader/WebPageReader.java">
           <value>
             <set />
           </value>
@@ -254,6 +274,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/readerTest/wikiFilmReader/HTMLReaderTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/readerTest/wikiReader/HTMLReaderTest.java">
           <value>
             <set />
           </value>
