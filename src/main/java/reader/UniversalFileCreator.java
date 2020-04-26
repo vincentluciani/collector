@@ -24,8 +24,9 @@ public class UniversalFileCreator {
 
         Path filePath = this.basePath.resolve(fileName);
 
-        row = row.replaceAll("\"", "\"\"");
         row = row.replaceAll("\\\\", "\\\\\\\\");
+        row = row.replaceAll("\"", "\\\\\"");
+
 
         try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath.toFile(), true))){
             out.write(row);
