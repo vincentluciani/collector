@@ -6,9 +6,9 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.concurrent.TimeUnit;
 
-public class DispatcherApp {
+public class LauncherApp {
 
-    private static final Logger logger = LogManager.getLogger(DispatcherApp.class.getName());
+    private static final Logger logger = LogManager.getLogger(LauncherApp.class.getName());
 
     public static void main(String[] args) throws InterruptedException {
 
