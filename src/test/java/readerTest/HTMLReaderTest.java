@@ -1,4 +1,4 @@
-package readerTest.wikiReader;
+package readerTest;
 
 import org.junit.Test;
 import reader.websiteReader.HTMLReader;

@@ -27,12 +27,13 @@ class NewThread implements Runnable {
     @SneakyThrows
     public void run(){
 
+        String lastProcessedIdentification="0";
         String startingMessage = String.format("Node: %s starting",logicalNode);
         logger.info(startingMessage);
         LogicalNodeConfigurationManager readerConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),logicalNode);
 
         try {
-            Reader reader = ReaderFactory.getReader("oracle",readerConfigurationManager,"4007129960313");
+            Reader reader = ReaderFactory.getReader(readerConfigurationManager.getLogicalNodeType(),readerConfigurationManager,lastProcessedIdentification);
             reader.readAndOutputToUniversalFile();
         } catch (SQLException e) {
             logger.error(e.getMessage());

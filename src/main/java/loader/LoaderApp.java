@@ -24,7 +24,7 @@ public class LoaderApp {
 
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"en_ID");
 
-        String baseDirectory = "C:\\test_java\\output2";
+      /*  String baseDirectory = "C:\\test_java\\output5"; */
 
         BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager);
 

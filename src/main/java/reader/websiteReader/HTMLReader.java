@@ -5,15 +5,20 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import reader.wikiReader.Entity;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class HTMLReader {
 
     Document HTMLDocument;
+    String url;
+    String category;
 
     public HTMLReader(String url) throws IOException {
         try {
@@ -21,10 +26,34 @@ public class HTMLReader {
         } catch (HttpStatusException ex) {
             System.out.println(ex);
         }
+        this.url = url;
+        findCategoryFromUrl();
     }
 
-    public void readKnowledgeTables(){
+    public void findCategoryFromUrl() throws MalformedURLException {
+
+        String path = new URL(url).getPath();
+
+        // todo put in array and parameterize
+        Pattern pattern1 = Pattern.compile("^/sql-tutorial/.*");
+        Pattern pattern2 = Pattern.compile("^/php-tutorial/.*");
+
+        Matcher matcher1 = pattern1.matcher(path);
+        Matcher matcher2 = pattern2.matcher(path);
+
+        if (matcher1.find()) {
+            this.category = "SQL";
+        } else if (matcher2.find()){
+            this.category ="PHP";
+        } else {
+            this.category = "other";
+        }
+
+    }
+    public ArrayList<Entity> readKnowledgeTables()
+    {
         Elements mainSections = this.HTMLDocument.select("h2");
+        ArrayList<Entity> finalListOfQuestionAnswers = new ArrayList<Entity>();
 
         for (Element currentSection : mainSections)
         {
@@ -39,13 +68,19 @@ public class HTMLReader {
                nextSibling = nextSibling.nextElementSibling();
                elementTag = nextSibling.tag().toString();
             }
-
+            ArrayList<Entity> currentListOfQuestionAnswers = new ArrayList<Entity>();
                 // System.out.println("table:"+elementTag+" element:"+nextSibling.html());
-                readKnowledgeTable(nextSibling);
+                currentListOfQuestionAnswers = readKnowledgeTable(nextSibling,sectionTitle);
+
+            finalListOfQuestionAnswers.addAll(currentListOfQuestionAnswers);
         }
+
+        return finalListOfQuestionAnswers;
     }
 
-    public void readKnowledgeTable(Element tableElement){
+    public ArrayList<Entity> readKnowledgeTable(Element tableElement,String sectionTitle) {
+
+        ArrayList<Entity> listOfQuestionAnswers = new ArrayList<Entity>();
 
         Elements lines = tableElement.select("tr");
 
@@ -54,11 +89,13 @@ public class HTMLReader {
             Elements currentRowValue = line.select("td");
             String question = currentRowValue.get(0).text();
             String answer = currentRowValue.get(1).text();
-            System.out.println("question:"+question+" answer:"+ answer);
+            System.out.println("question:" + question + " answer:" + answer);
 
-    // todo Double quote is replaced with \"
+            Entity entity = new Entity(this.category, sectionTitle, question, answer);
+
+            // todo Double quote is replaced with \"
+
         }
-
+        return listOfQuestionAnswers;
     }
-
 }

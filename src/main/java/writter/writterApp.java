@@ -24,9 +24,9 @@ public class writterApp {
 
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"en_ID");
 
-        String baseDirectory = "C:\\test_java\\output2";
+        String baseDirectory = "C:\\test_java\\output5";
 
-        BatchCreator batchCreator = new BatchCreator("en_ID", baseDirectory, logicalNodeConfigurationManager);
+        BatchCreator batchCreator = new BatchCreator("zh_CN", baseDirectory, logicalNodeConfigurationManager);
 
         for (int i=0;i<9;i++) {
             batchCreator.toFile();

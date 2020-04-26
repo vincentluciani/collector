@@ -79,6 +79,12 @@ public class LogicalNodeConfigurationManager {
     @Getter private String destinationSubDataPool;
 
     @Getter private String logicalNodeID;
+    @Getter private String logicalNodeType;
+    @Getter private String sitemapUrl;
+    @Getter private String sitemapProtocol;
+    @Getter private String sitemapIsProxy;
+    @Getter private String urlPattern;
+
     private Path configurationsBasePath;
 
 
@@ -104,6 +110,12 @@ public class LogicalNodeConfigurationManager {
     private static final String BATCH_FOR_UPLOAD_BASE_PATH="batchForUploadBasePath";
     private static final String DESTINATION_DATA_POOL="destinationDataPool";
     private static final String DESTINATION_SUB_DATA_POOL="destinationSubDataPool";
+
+    private static final  String LOGICAL_NODE_TYPE=" logicalNodeType";
+    private static final  String SITEMAP_URL="sitemapUrl";
+    private static final  String SITEMAP_PROTOCOL="sitemapProtocol";
+    private static final  String SITEMAP_ISPROXY="sitemapIsProxy";
+    private static final String  URL_PATTERN="urlPattern";
 
     private static final Logger logger = LogManager.getLogger(LogicalNodeConfigurationManager.class.getName());
 
@@ -236,6 +248,12 @@ public class LogicalNodeConfigurationManager {
         this.identificationColumnName = getSimpleParameter(IDENTIFICATION_COLUMN_NAME,configuration);
         this.destinationDataPool = getSimpleParameter(DESTINATION_DATA_POOL,configuration);
         this.destinationSubDataPool = getSimpleParameter(DESTINATION_SUB_DATA_POOL,configuration);
+
+        this.logicalNodeType = getSimpleParameter(LOGICAL_NODE_TYPE,configuration);
+        this.sitemapUrl = getSimpleParameter(SITEMAP_URL,configuration);
+        this.sitemapProtocol = getSimpleParameter(SITEMAP_PROTOCOL,configuration);
+        this.sitemapIsProxy = getSimpleParameter(SITEMAP_ISPROXY,configuration);
+        this.urlPattern = getSimpleParameter(URL_PATTERN,configuration);
     }
 
     public void readPhysicalSourceProperties(){

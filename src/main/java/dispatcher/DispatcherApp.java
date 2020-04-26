@@ -17,11 +17,11 @@ public class DispatcherApp {
         String startMessage = String.format("start:%s",startTime.toString());
         logger.info(startMessage);
 
-        NewThread thread1 = new NewThread("id_ID");
-        NewThread thread2 = new NewThread("en_ID");
+        NewThread thread1 = new NewThread("zh_CN");
+      //  NewThread thread2 = new NewThread("zh_TW");
 
         thread1.thread.join();
-        thread2.thread.join();
+     //   thread2.thread.join();
 
         logger.info("Ended processing main");
         LocalTime endTime = LocalTime.now();
