@@ -22,11 +22,12 @@ public class writterApp {
         String startingMessage = String.format("start:%s",startTime.toString());
         logger.info(startingMessage);
 
-        LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),"en_ID");
+        String logicalNode = "vince";
+        LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),logicalNode);
 
-        String baseDirectory = "C:\\test_java\\output";
+        String baseDirectory = "C:\\test_java\\output6";
 
-        BatchCreator batchCreator = new BatchCreator("vince", baseDirectory, logicalNodeConfigurationManager);
+        BatchCreator batchCreator = new BatchCreator(logicalNode, baseDirectory, logicalNodeConfigurationManager);
 
         for (int i=0;i<9;i++) {
             batchCreator.toFile();

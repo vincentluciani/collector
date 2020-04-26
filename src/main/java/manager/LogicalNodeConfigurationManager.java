@@ -224,8 +224,11 @@ public class LogicalNodeConfigurationManager {
 
         if (nodeParameterValue!=null){
             parameterValue = nodeParameterValue.toString();
-        } else {
+        } else if (commonParameterValue!=null){
             parameterValue = commonParameterValue.toString();
+        } else
+        {
+            parameterValue="";
         }
         return parameterValue;
     }
