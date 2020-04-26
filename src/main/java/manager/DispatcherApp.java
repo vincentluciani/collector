@@ -1,4 +1,4 @@
-package dispatcher;
+package manager;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,7 @@ public class DispatcherApp {
         String startMessage = String.format("start:%s",startTime.toString());
         logger.info(startMessage);
 
-        NewThread thread1 = new NewThread("zh_CN");
+        NewThread thread1 = new NewThread("vince");
       //  NewThread thread2 = new NewThread("zh_TW");
 
         thread1.thread.join();

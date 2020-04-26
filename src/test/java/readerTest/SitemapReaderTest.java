@@ -1,7 +1,9 @@
 package readerTest;
 
+import manager.LogicalNodeConfigurationManager;
 import org.junit.Test;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import reader.websiteReader.HTMLReader;
@@ -15,7 +17,9 @@ public class SitemapReaderTest {
 
     @Test
     public void checkStringExtracted() throws IOException {
-        SitemapReader sitemapReader = new SitemapReader("https://www.vincent-luciani.com/sitemap.xml", "<loc>(.*tutoria.*)</loc>","https",false);
+
+        LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts"),"vincent");
+        SitemapReader sitemapReader = new SitemapReader(logicalNodeConfigurationManager, "0");
         ArrayList<String> listOfURLs = new ArrayList<String>();
 
 

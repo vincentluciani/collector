@@ -26,6 +26,18 @@ public class BatchCreatorTest
     @Test
     public void checkBatchIsCreated() throws IOException {
 
+        /*
+        Files are copied from 09_batch_creation\work\directoryWithFilesToUpdate
+        to /src/test/testArtifacts/batch_creation/work/directoryWithFilesToUpdate
+        by maven
+
+        Then what we expect is that the application, from the 5 files
+         present in the directory, first creates a batch containing 4 entries,
+         then a batch containing one entry.
+
+        Before starting the test, the output, batches_to_upload\work\directoryWithProcessedFiles\,
+        is cleaned by maven.
+         */
         String baseDirectory = "C:\\test_java\\collector\\src\\test\\testArtifacts\\batch_creation\\work"
                                 + "\\directoryWithFilesToUpdate";
 

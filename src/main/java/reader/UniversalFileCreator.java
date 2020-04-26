@@ -20,6 +20,7 @@ public class UniversalFileCreator {
 
     public void createFile(String row, String fileName) {
 
+        fileName = fileName.replaceAll("(\\W|^_)*", "_");
         Path filePath = this.basePath.resolve(fileName);
 
         try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath.toFile(), true))){
