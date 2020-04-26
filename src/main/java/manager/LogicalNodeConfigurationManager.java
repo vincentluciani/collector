@@ -111,7 +111,7 @@ public class LogicalNodeConfigurationManager {
     private static final String DESTINATION_DATA_POOL="destinationDataPool";
     private static final String DESTINATION_SUB_DATA_POOL="destinationSubDataPool";
 
-    private static final  String LOGICAL_NODE_TYPE=" logicalNodeType";
+    private static final  String LOGICAL_NODE_TYPE="logicalNodeType";
     private static final  String SITEMAP_URL="sitemapUrl";
     private static final  String SITEMAP_PROTOCOL="sitemapProtocol";
     private static final  String SITEMAP_ISPROXY="sitemapIsProxy";
@@ -179,12 +179,16 @@ public class LogicalNodeConfigurationManager {
         String commonParameter = String.format(COMMON_PARAMETER_FORMAT,configurationType);
         String nodeParameter = String.format(PARAMETER_FORMAT,this.logicalNodeID,configurationType);
         Object nodeParameterValue = configuration.getProperty(nodeParameter);
+        Object commonParameterValue = configuration.getProperty(commonParameter);
         String parameterValue;
 
         if (nodeParameterValue!=null){
             parameterValue = configuration.getProperty(nodeParameter).toString();
-        } else {
+        } else if (commonParameterValue!=null){
             parameterValue = configuration.getProperty(commonParameter).toString();
+        } else
+        {
+            parameterValue = "";
         }
 
         pathConfiguration = configurationsBasePath.resolve(CONFIGURATION).resolve(configurationType)

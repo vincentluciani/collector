@@ -1,6 +1,6 @@
 package loader;
 
-import dispatcher.DispatcherApp;
+import manager.DispatcherApp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import manager.LogicalNodeConfigurationManager;

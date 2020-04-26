@@ -76,13 +76,14 @@ public class OracleDatabaseReader implements Reader {
 
 
                     String documentName = rs.getString(this.identificationColumnNumber);
-                    String row;
+                    String row = "";
 
                     StringBuilder sb = new StringBuilder("");
 
-                    for (int i = 1; i <= this.columnCount; i++) {
+                    for (int i = 1; i <= (this.columnCount); i++) {
+                        sb.append("_${");
                         sb.append(rs.getString(i));
-                        sb.append(";");
+                        sb.append("};");
                      }
 
                     row=sb.toString();

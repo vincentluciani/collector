@@ -21,7 +21,7 @@ public class JSONBodyCreatorTest {
     @Test
     public void checkOutputBasedOnInputString(){
 
-        String inputString="3;2b;8";
+        String inputString="_${3};_${2b};_${8}";
         String outputTemplate = logicalNodeConfigurationManager.getOutputCreationTemplate();
 
         String expectedOutput="{\"update\":{\"_id\":\"1\"}}\n{\"field0\":\"3\",\"field1\":\"2b\",\"field2\":\"8\"}";

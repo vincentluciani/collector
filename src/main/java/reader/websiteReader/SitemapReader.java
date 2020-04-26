@@ -90,13 +90,19 @@ public class SitemapReader implements Reader {
             String documentName = url+"_"+ i.toString();
             i++;
 
-            String row;
-            row = String.format("%s;%s;%s;%s;%s",
-                    currentEntity.getCategory(),
-                    currentEntity.getSubcategory(),
-                    currentEntity.getQuestion(),
-                    currentEntity.getAnswer());
+            String row="_${";
+            StringBuilder stringBuilder = new StringBuilder(row);
 
+            stringBuilder.append(currentEntity.getCategory())
+                    .append("};_${")
+                    .append(currentEntity.getSubcategory())
+                    .append("};_${")
+                    .append(currentEntity.getQuestion())
+                    .append("};_${")
+                    .append(currentEntity.getAnswer())
+                    .append("};");
+
+            row = stringBuilder.toString();
             UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
             universalFileCreator.createFile(row,documentName);
             this.lastProcessedIdentification = documentName;

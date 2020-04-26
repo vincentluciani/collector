@@ -8,10 +8,10 @@ import java.sql.SQLException;
 public class ReaderFactory {
 
     public static Reader getReader(String readerType, LogicalNodeConfigurationManager logicalNodeConfigurationManager, String lastProcessedIdentification) throws SQLException {
-        if ( readerType == "oracle"){
+        if ( readerType.equals("oracle")){
             return new OracleDatabaseReader(logicalNodeConfigurationManager,lastProcessedIdentification);
         }
-        if ( readerType == "sitemap"){
+        if ( readerType.equals("sitemap")){
             return new SitemapReader(logicalNodeConfigurationManager,lastProcessedIdentification);
         }
         return null;

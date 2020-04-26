@@ -83,7 +83,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/manager/DispatcherApp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/manager/LogicalNodeConfigurationManager.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/manager/NewThread.java">
           <value>
             <set />
           </value>
@@ -109,6 +119,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/LogicalNodeConfigurationManager.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/OracleDatabaseReader.java">
           <value>
             <set />
           </value>

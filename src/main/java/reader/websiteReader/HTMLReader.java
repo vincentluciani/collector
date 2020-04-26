@@ -19,11 +19,14 @@ public class HTMLReader {
     Document HTMLDocument;
     String url;
     String category;
+    boolean isUrlReachable=false;
 
     public HTMLReader(String url) throws IOException {
         try {
             HTMLDocument = Jsoup.connect(url).get();
+            this.isUrlReachable=true;
         } catch (HttpStatusException ex) {
+            this.isUrlReachable=false;
             System.out.println(ex);
         }
         this.url = url;
@@ -32,6 +35,9 @@ public class HTMLReader {
 
     public void findCategoryFromUrl() throws MalformedURLException {
 
+        if (!this.isUrlReachable){
+            this.category="";
+        }
         String path = new URL(url).getPath();
 
         // todo put in array and parameterize
@@ -52,8 +58,13 @@ public class HTMLReader {
     }
     public ArrayList<Entity> readKnowledgeTables()
     {
-        Elements mainSections = this.HTMLDocument.select("h2");
         ArrayList<Entity> finalListOfQuestionAnswers = new ArrayList<Entity>();
+
+        if (!this.isUrlReachable){
+            return finalListOfQuestionAnswers;
+        }
+
+        Elements mainSections = this.HTMLDocument.select("h2");
 
         for (Element currentSection : mainSections)
         {
@@ -94,7 +105,7 @@ public class HTMLReader {
             Entity entity = new Entity(this.category, sectionTitle, question, answer);
 
             // todo Double quote is replaced with \"
-
+            listOfQuestionAnswers.add(entity);
         }
         return listOfQuestionAnswers;
     }
