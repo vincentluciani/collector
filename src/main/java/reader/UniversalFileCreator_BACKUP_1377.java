@@ -20,8 +20,11 @@ public class UniversalFileCreator {
 
     public void createFile(String row, String fileName) {
 
+<<<<<<< HEAD
+        fileName = fileName.replaceAll("(\\W|^_)*", "_");
+=======
         fileName = fileName.replaceAll("([^a-zA-Z\\d])", "_");
-
+>>>>>>> changeuniversalfiles
         Path filePath = this.basePath.resolve(fileName);
 
         row = row.replaceAll("\"", "\"\"");

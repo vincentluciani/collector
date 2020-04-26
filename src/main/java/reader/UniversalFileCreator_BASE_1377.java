@@ -20,12 +20,7 @@ public class UniversalFileCreator {
 
     public void createFile(String row, String fileName) {
 
-        fileName = fileName.replaceAll("([^a-zA-Z\\d])", "_");
-
         Path filePath = this.basePath.resolve(fileName);
-
-        row = row.replaceAll("\"", "\"\"");
-        row = row.replaceAll("\\\\", "\\\\\\\\");
 
         try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath.toFile(), true))){
             out.write(row);
