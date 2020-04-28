@@ -85,8 +85,6 @@ Ysrc/test/testArtifacts/configuration/physicalDataSource/physicalDataSource_003.
 _src/test/testArtifacts/configuration/dataSelectionTemplate/dataSelectionTemplate_100.properties,5\d\5d457be19b96763dc2dcb5240518f80e3dce7bdd
 x
 Hsrc/test/testArtifacts/configuration/logicalNode/logicalNodes.properties,2\4\247781fd2e48c4fcc0d44a0a30698e2829310ad9
-W
-'src/main/java/dispatcher/NewThread.java,d\e\dea4472286e80c6d2665669bb6deebce1fe7e13e
 Z
 *src/main/java/writter/JSONBodyCreator.java,5\b\5bc3912391a702193a2f57757cb2eb9e2be1156b
 ‘
@@ -127,8 +125,6 @@ Y
 )src/main/java/reader/ReadingExcelApp.java,6\c\6ce40dd8101acd81c16597ebaf6282f22a5f534b
 U
 %src/main/java/reader/ExcelReader.java,8\3\83ad20cb390a2ff707812914d5c6405dd34c6ecd
-[
-+src/main/java/dispatcher/DispatcherApp.java,5\b\5b668cc9f2a23662892617dd22e8a05ff1222e1e
 S
 #src/main/java/loader/LoaderApp.java,4\5\45e1d4ce51c0acf426f62d70b95dd72e253fb115
 U
@@ -149,3 +145,5 @@ j
 ,src/test/java/readerTest/HTMLReaderTest.java,b\6\b66327594eb681c515f7624e3a114215333cf514
 _
 /src/test/java/readerTest/SitemapReaderTest.java,e\4\e468489ea7c4ed53d6ed7a7fc31d3ad7fb9a7cf4
+V
+&src/main/java/manager/LauncherApp.java,9\9\9900c5fcdf2cc5298d878d914e3cfbd875999367

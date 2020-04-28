@@ -69,8 +69,6 @@ public class HTMLReader {
         for (Element currentSection : mainSections)
         {
             String sectionTitle = currentSection.text();
-            System.out.println("section title:"+sectionTitle);
-
 
             Element nextSibling = currentSection.nextElementSibling();
             String elementTag = nextSibling.tag().toString();
@@ -80,7 +78,6 @@ public class HTMLReader {
                elementTag = nextSibling.tag().toString();
             }
             ArrayList<Entity> currentListOfQuestionAnswers = new ArrayList<Entity>();
-                // System.out.println("table:"+elementTag+" element:"+nextSibling.html());
                 currentListOfQuestionAnswers = readKnowledgeTable(nextSibling,sectionTitle);
 
             finalListOfQuestionAnswers.addAll(currentListOfQuestionAnswers);
@@ -100,7 +97,6 @@ public class HTMLReader {
             Elements currentRowValue = line.select("td");
             String question = currentRowValue.get(0).text();
             String answer = currentRowValue.get(1).text();
-            System.out.println("question:" + question + " answer:" + answer);
 
             Entity entity = new Entity(this.category, sectionTitle, question, answer);
 

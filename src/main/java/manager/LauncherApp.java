@@ -2,9 +2,16 @@ package manager;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import reader.websiteReader.Entity;
+
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class LauncherApp {
 
@@ -17,11 +24,43 @@ public class LauncherApp {
         String startMessage = String.format("start:%s",startTime.toString());
         logger.info(startMessage);
 
-        NewThread thread1 = new NewThread("vince");
-      //  NewThread thread2 = new NewThread("zh_TW");
+        List<String> listOfLogicalNodes = new ArrayList<String>();
+        String basePath="";
+        String task="";
 
-        thread1.thread.join();
-     //   thread2.thread.join();
+        Pattern nodeListPattern = Pattern.compile("nodeList=(.*)");
+        Pattern basePathPattern = Pattern.compile("basePath=(.*)");
+        Pattern taskPattern = Pattern.compile("task=(.*)");
+
+        for ( int i=0; i < args.length;i++){
+
+            Matcher nodeListMatcher = nodeListPattern.matcher(args[i]);
+            Matcher basePathMatcher = basePathPattern.matcher(args[i]);
+            Matcher taskMatcher = taskPattern.matcher(args[i]);
+
+            String listOfNodes="";
+
+            if (nodeListMatcher.find()) {
+                listOfNodes = nodeListMatcher.group(1);
+                listOfLogicalNodes = Arrays.asList(listOfNodes.split("\\s*,\\s*"));
+            } else if (basePathMatcher.find()){
+                basePath = basePathMatcher.group(1);
+            } else if (taskMatcher.find()){
+                task = taskMatcher.group(1);
+            }
+        }
+
+        List<NewThread> listOfThreads = new ArrayList<NewThread>();
+
+        for ( String currentLogicalNode : listOfLogicalNodes){
+            NewThread currentThread = new NewThread(currentLogicalNode,basePath,task);
+            listOfThreads.add(currentThread);
+        }
+
+        for ( NewThread currentThreadToJoin : listOfThreads){
+            currentThreadToJoin.thread.join();
+        }
+
 
         logger.info("Ended processing main");
         LocalTime endTime = LocalTime.now();

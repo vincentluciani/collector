@@ -3,17 +3,12 @@ package reader.websiteReader;
 import manager.LogicalNodeConfigurationManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.jsoup.HttpStatusException;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import reader.OracleDatabaseReader;
 import reader.Reader;
+import reader.ReaderApp;
 import reader.UniversalFileCreator;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class SitemapReader implements Reader {
@@ -44,6 +39,8 @@ public class SitemapReader implements Reader {
         this.protocol = this.logicalNodeConfigurationManager.getSitemapProtocol();
         this.isProxy = ( this.logicalNodeConfigurationManager.getSitemapIsProxy() == "true")?true:false;
         this.urlPattern = this.logicalNodeConfigurationManager.getUrlPattern();
+
+        logger.info("Sitemap URL:"+this.url);
     }
 
 

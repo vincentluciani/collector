@@ -138,6 +138,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/ReaderApp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/ReaderConfigurationManager.java">
           <value>
             <set />
@@ -454,6 +459,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../testCompanion/src/main/java/URLTestApp.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/java/URLTester.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/mysetest">
           <value>
             <set />
           </value>
