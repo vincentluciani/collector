@@ -27,8 +27,8 @@ public class BatchCreatorTest
     public void checkBatchIsCreated() throws IOException {
 
         /*
-        Files are copied from 09_batch_creation\work\directoryWithFilesToUpdate
-        to /src/test/testArtifacts/batch_creation/work/directoryWithFilesToUpdate
+        Files are copied from 09_batch_creation\work\directoryWithFilesToUpdate/us/en
+        to /src/test/testArtifacts/batch_creation/work/directoryWithFilesToUpdate/us/en
         by maven
 
         Then what we expect is that the application, from the 5 files

@@ -100,7 +100,8 @@ public class SitemapReader implements Reader {
                     .append("};");
 
             row = stringBuilder.toString();
-            UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
+            UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getReaderOutputBasePath(),
+                    this.logicalNodeConfigurationManager.getDestinationDataPool(),this.logicalNodeConfigurationManager.getDestinationSubDataPool());
             universalFileCreator.createFile(row,documentName);
             this.lastProcessedIdentification = documentName;
 

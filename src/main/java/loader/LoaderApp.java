@@ -22,7 +22,7 @@ public class LoaderApp {
         LocalTime startTime = LocalTime.now();
         System.out.println("start:" + startTime.toString());
 
-        String logicalNode = "vince";
+        String logicalNode = "zh_CN";
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java"),logicalNode);
 
       /*  String baseDirectory = "C:\\test_java\\output5"; */

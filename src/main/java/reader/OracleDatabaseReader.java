@@ -4,6 +4,7 @@ import manager.LogicalNodeConfigurationManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.Map;
 
@@ -88,12 +89,13 @@ public class OracleDatabaseReader implements Reader {
 
                     row=sb.toString();
 
-                    UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getOutputBasePath());
+                    UniversalFileCreator universalFileCreator = new UniversalFileCreator(this.logicalNodeConfigurationManager.getReaderOutputBasePath(),
+                            this.logicalNodeConfigurationManager.getDestinationDataPool(),this.logicalNodeConfigurationManager.getDestinationSubDataPool());
                     universalFileCreator.createFile(row,documentName);
                     this.lastProcessedIdentification = documentName;
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             logger.error(e.getMessage());
         }
     }

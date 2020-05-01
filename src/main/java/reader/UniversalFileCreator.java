@@ -6,23 +6,32 @@ import org.apache.logging.log4j.Logger;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class UniversalFileCreator {
 
     private Path basePath;
+    private String logicalNode;
+    private String logicalSubNode;
+
+    private Path folderForLocale;
+    private Path folderForSubLocale;
 
     private static final Logger logger = LogManager.getLogger(UniversalFileCreator.class.getName());
 
-    public UniversalFileCreator(Path basePath)  {
+    public UniversalFileCreator(Path basePath,String logicalNode, String logicalSubNode) throws IOException {
         this.basePath = basePath;
+        this.logicalNode = logicalNode;
+        this.logicalSubNode = logicalSubNode;
+        createDirectoriesIfNotExists();
     }
 
     public void createFile(String row, String fileName) {
 
         fileName = fileName.replaceAll("([^a-zA-Z\\d])", "_");
 
-        Path filePath = this.basePath.resolve(fileName);
+        Path filePath = this.folderForSubLocale.resolve(fileName);
 
         row = row.replaceAll("\\\\", "\\\\\\\\");
         row = row.replaceAll("\"", "\\\\\"");
@@ -35,4 +44,21 @@ public class UniversalFileCreator {
             logger.error(e.getMessage());
         }
     }
+
+    public void createDirectoriesIfNotExists() throws IOException {
+
+        this.folderForLocale = basePath.resolve(this.logicalNode);
+
+        if (!Files.isDirectory(this.folderForLocale)) {
+            Files.createDirectories(this.folderForLocale);
+        }
+
+        this.folderForSubLocale = folderForLocale.resolve(this.logicalSubNode);
+
+        if (!Files.isDirectory(this.folderForSubLocale)) {
+            Files.createDirectories(this.folderForSubLocale);
+        }
+
+    }
+
 }

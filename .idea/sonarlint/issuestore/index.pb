@@ -147,3 +147,7 @@ _
 /src/test/java/readerTest/SitemapReaderTest.java,e\4\e468489ea7c4ed53d6ed7a7fc31d3ad7fb9a7cf4
 V
 &src/main/java/manager/LauncherApp.java,9\9\9900c5fcdf2cc5298d878d914e3cfbd875999367
+S
+#src/main/java/reader/ReaderApp.java,7\9\799290d159f506d569dfb0ed889477a5c4dce3c3
+T
+$src/main/java/manager/NewThread.java,b\6\b6b02c2d0e880d766529b56bca43361cd38a3843

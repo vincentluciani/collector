@@ -39,12 +39,18 @@ public class BatchCreator {
     LogicalNodeConfigurationManager logicalNodeConfigurationManager;
     private static Integer batchNumber=0;
     private Collection<Path> currentFilesUsedForBatch = new ArrayList<Path>();
+    private String destinationDataPool;
+    private String destinationSubDataPool;
+    private Path subDataPoolDirectory;
 
     private static final Logger logger = LogManager.getLogger(BatchCreator.class.getName());
 
     public BatchCreator(String logicalNode, String baseDirectory, LogicalNodeConfigurationManager logicalNodeConfigurationManager){
         this.logicalNode = logicalNode;
         this.baseDirectory = Paths.get(baseDirectory);
+        this.destinationDataPool = logicalNodeConfigurationManager.getDestinationDataPool();
+        this.destinationSubDataPool = logicalNodeConfigurationManager.getDestinationSubDataPool();
+        this.subDataPoolDirectory = this.baseDirectory.resolve(this.destinationDataPool).resolve(this.destinationSubDataPool);
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
     }
 
@@ -54,7 +60,7 @@ public class BatchCreator {
         StringBuilder stringBuilder = new StringBuilder(batchContent);
 
         Integer lineInBatchCount=1;
-        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.baseDirectory)) {
+        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.subDataPoolDirectory)) {
             for (Path currentFile : workingDirectoryStream) {
                 String filename = currentFile.getFileName().toString();
                 List<String> lines  = FileUtils.readLines(currentFile.toFile(), StandardCharsets.UTF_8);

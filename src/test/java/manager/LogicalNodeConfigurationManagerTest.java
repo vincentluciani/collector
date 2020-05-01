@@ -51,8 +51,8 @@ public class LogicalNodeConfigurationManagerTest {
     }
 
     @Test
-    public void checkOutputBasePath(){
-        assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\output", logicalNodeConfigurationManager.getOutputBasePath().toString());
+    public void checkReaderOutputBasePath(){
+        assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\output", logicalNodeConfigurationManager.getReaderOutputBasePath().toString());
     }
     @Test
     public void checkBatchForUploadBasePath(){
