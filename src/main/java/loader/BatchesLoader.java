@@ -24,21 +24,29 @@ public class BatchesLoader {
 
     public boolean load() {
 
-        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.logicalNodeConfigurationManager.getBatchForUploadBasePath(), "batch_*")) {
-            for (Path currentFileOrDirectory : workingDirectoryStream) {
+        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.logicalNodeConfigurationManager.getBatchForUploadBasePath(), "batch_*"))
+        {
+            for (Path currentFileOrDirectory : workingDirectoryStream)
+            {
                 String requestBody = "";
                 StringBuilder stringBuilder = new StringBuilder(requestBody);
 
                 List<String> lines = FileUtils.readLines(currentFileOrDirectory.toFile(), StandardCharsets.UTF_8);
-                for (java.lang.String line : lines) {
+                for (java.lang.String line : lines)
+                {
                     stringBuilder.append(line).append("\n");
                 }
                 BatchLoader batchLoader = new BatchLoader();
                 requestBody = stringBuilder.toString();
                 String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager, requestBody, false);
-                logger.info(statusString);
-            }
-        } catch (IOException e) {
+
+                if (statusString == "SUCCESS")
+                {
+                    logger.info("Batch:" + currentFileOrDirectory.getFileName() + " loaded successfully");
+                } else
+                    logger.error(statusString);
+                }
+        }  catch (IOException e) {
             logger.error(e.getMessage());
             return false;
         }

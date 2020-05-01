@@ -8,10 +8,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BatchLoader {
 
+    private static String SUCCESS="SUCCESS";
+
     public String loadIndividualBatch(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String requestBody, boolean isProxy) throws IOException {
+
 
         HttpURLConnection conn;
         String outputMessage="";
@@ -45,10 +50,27 @@ public class BatchLoader {
                 response.append(responseLine.trim());
             }
             outputMessage=response.toString();
+
+            outputMessage=extractErrorMessage(outputMessage);
         }
 
         return outputMessage;
 
     }
 
+    public String extractErrorMessage(String outputMessage){
+        Pattern patternFailure = Pattern.compile("\"errors\":true");
+        Pattern patternSuccess = Pattern.compile("\"errors\":false");
+        Matcher matcherFailure = patternFailure.matcher(outputMessage);
+        Matcher matcherSuccess = patternSuccess.matcher(outputMessage);
+
+        if (matcherFailure.find()) {
+            return outputMessage;
+        } else if (matcherSuccess.find()) {
+            return SUCCESS;
+        } else {
+            return "";
+        }
+
+    }
 }

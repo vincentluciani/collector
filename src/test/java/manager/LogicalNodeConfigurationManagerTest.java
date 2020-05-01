@@ -54,6 +54,12 @@ public class LogicalNodeConfigurationManagerTest {
     public void checkReaderOutputBasePath(){
         assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\output", logicalNodeConfigurationManager.getReaderOutputBasePath().toString());
     }
+
+    @Test
+    public void checkWriterInputBasePath(){
+        assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\output", logicalNodeConfigurationManager.getWriterInputBasePath().toString());
+    }
+
     @Test
     public void checkBatchForUploadBasePath(){
         assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\batches_to_upload", logicalNodeConfigurationManager.getBatchForUploadBasePath().toString());

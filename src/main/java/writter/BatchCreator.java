@@ -41,6 +41,7 @@ public class BatchCreator {
     private Collection<Path> currentFilesUsedForBatch = new ArrayList<Path>();
     private String destinationDataPool;
     private String destinationSubDataPool;
+    private Path readerInputDirectory;
     private Path subDataPoolDirectory;
 
     private static final Logger logger = LogManager.getLogger(BatchCreator.class.getName());
@@ -48,9 +49,10 @@ public class BatchCreator {
     public BatchCreator(String logicalNode, String baseDirectory, LogicalNodeConfigurationManager logicalNodeConfigurationManager){
         this.logicalNode = logicalNode;
         this.baseDirectory = Paths.get(baseDirectory);
+        this.readerInputDirectory = logicalNodeConfigurationManager.getWriterInputBasePath();
         this.destinationDataPool = logicalNodeConfigurationManager.getDestinationDataPool();
         this.destinationSubDataPool = logicalNodeConfigurationManager.getDestinationSubDataPool();
-        this.subDataPoolDirectory = this.baseDirectory.resolve(this.destinationDataPool).resolve(this.destinationSubDataPool);
+        this.subDataPoolDirectory = this.readerInputDirectory.resolve(this.destinationDataPool).resolve(this.destinationSubDataPool);
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
     }
 

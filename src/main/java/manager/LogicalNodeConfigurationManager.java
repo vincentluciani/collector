@@ -59,6 +59,7 @@ public class LogicalNodeConfigurationManager {
     @Getter private Path dataSelectionTemplatePath;
     @Getter private Path outputCreationTemplatePath;
     @Getter private Path readerOutputBasePath;
+    @Getter private Path writerInputBasePath;
 
     @Getter private String databaseName;
     @Getter private String databaseHost;
@@ -104,6 +105,7 @@ public class LogicalNodeConfigurationManager {
     private static final String CRITERIA_VALUES="criteriaValues";
     private static final String IDENTIFICATION_NUMBER="identificationColumnNumber";
     private static final String READER_OUTPUT_BASE_PATH="readerOutputBasePath";
+    private static final String WRITER_INPUT_BASE_PATH="writerInputBasePath";
     private static final String READER_BATCH_SIZE="readerBatchSize";
     private static final String WRITER_BATCH_SIZE="writerBatchSize";
     private static final String IDENTIFICATION_COLUMN_NAME="identificationColumnName";
@@ -247,6 +249,7 @@ public class LogicalNodeConfigurationManager {
         this.criteriaParameters = getCriteriaConfiguration(CRITERIA_PARAMETERS,configuration);
         this.criteriaValues = getCriteriaConfiguration(CRITERIA_VALUES,configuration);
         this.readerOutputBasePath = Paths.get(getSimpleParameter(READER_OUTPUT_BASE_PATH,configuration));
+        this.writerInputBasePath = Paths.get(getSimpleParameter(WRITER_INPUT_BASE_PATH,configuration));
         this.batchForUploadBasePath = Paths.get(getSimpleParameter(BATCH_FOR_UPLOAD_BASE_PATH,configuration));
 
         this.identificationColumnNumber = Integer.valueOf(getSimpleParameter(IDENTIFICATION_NUMBER,configuration));

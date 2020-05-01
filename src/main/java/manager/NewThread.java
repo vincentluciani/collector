@@ -36,7 +36,7 @@ class NewThread implements Runnable {
     public void run(){
 
         String lastProcessedIdentification="0";
-        String startingMessage = String.format("Node: %s starting",logicalNode);
+        String startingMessage = String.format("Node: %s task %s starting",logicalNode,this.task);
         logger.info(startingMessage);
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get(this.basePath),logicalNode);
 
@@ -52,6 +52,7 @@ class NewThread implements Runnable {
                 }
             } else if (this.task.equals("load")){
                 BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager);
+                boolean result = batchesLoader.load();
             } else if (this.task.equals("dispatch")){
                 DispatcherConfigurationManager dispatcherConfigurationManager = new DispatcherConfigurationManager(Paths.get(this.basePath));
 
@@ -64,7 +65,7 @@ class NewThread implements Runnable {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
-        String endingMessage = String.format("Node: %s ended",logicalNode);
+        String endingMessage = String.format("Node: %s task %s ended",logicalNode,this.task);
         logger.info(endingMessage);
     }
 
