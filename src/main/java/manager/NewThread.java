@@ -51,7 +51,7 @@ class NewThread implements Runnable {
                     batchCreator.toFile();
                 }
             } else if (this.task.equals("load")){
-                BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager);
+                BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager,"silent");
                 boolean result = batchesLoader.load();
             } else if (this.task.equals("dispatch")){
                 DispatcherConfigurationManager dispatcherConfigurationManager = new DispatcherConfigurationManager(Paths.get(this.basePath));

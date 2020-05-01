@@ -16,7 +16,7 @@ public class BatchesLoaderTest {
 
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get("C:\\test_java\\collector\\src\\test\\testArtifacts"),"ar");
 
-        BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager);
+        BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager,"verbose");
 
         boolean result = batchesLoader.load();
 

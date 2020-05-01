@@ -57,7 +57,7 @@ public class LogicalNodeConfigurationManagerTest {
 
     @Test
     public void checkWriterInputBasePath(){
-        assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\output", logicalNodeConfigurationManager.getWriterInputBasePath().toString());
+        assertEquals("C:\\test_java\\collector\\src\\test\\testArtifacts\\batch_creation\\work\\directoryWithFilesToUpdate", logicalNodeConfigurationManager.getWriterInputBasePath().toString());
     }
 
     @Test

@@ -14,12 +14,14 @@ import java.util.List;
 
 public class BatchesLoader {
 
+    private String reportingType;
 
     private LogicalNodeConfigurationManager logicalNodeConfigurationManager;
     private static final Logger logger = LogManager.getLogger(BatchesLoader.class.getName());
 
-    public BatchesLoader(LogicalNodeConfigurationManager logicalNodeConfigurationManager) {
+    public BatchesLoader(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String reportingType) {
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
+        this.reportingType = reportingType;
     }
 
     public boolean load() {
@@ -38,7 +40,7 @@ public class BatchesLoader {
                 }
                 BatchLoader batchLoader = new BatchLoader();
                 requestBody = stringBuilder.toString();
-                String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager, requestBody, false);
+                String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager, requestBody, false, this.reportingType);
 
                 if (statusString == "SUCCESS")
                 {

@@ -26,7 +26,8 @@ public class BatchLoaderTest {
                 "{\"index\":{\"_id\":\"a4\"}}\n" +
                 "{\"field0\":\"41\",\"field1\":\"42\",\"field2\":\"43\"}\n";
 
-        String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager,requestBody,false);
+        String statusString = batchLoader.loadIndividualBatch(logicalNodeConfigurationManager,requestBody,false,"verbose");
+
 
         JSONAnswerAnalyzer jsonAnswerAnalyzer = new JSONAnswerAnalyzer(statusString);
         /* check: 3 times

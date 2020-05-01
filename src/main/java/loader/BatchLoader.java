@@ -14,12 +14,14 @@ import java.util.regex.Pattern;
 public class BatchLoader {
 
     private static String SUCCESS="SUCCESS";
+    private String reportingType;
 
-    public String loadIndividualBatch(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String requestBody, boolean isProxy) throws IOException {
+    public String loadIndividualBatch(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String requestBody, boolean isProxy, String reportingType) throws IOException {
 
 
         HttpURLConnection conn;
         String outputMessage="";
+        this.reportingType = reportingType;
 
         String url = "http://localhost:9200/"+ logicalNodeConfigurationManager.getDestinationDataPool() + "/"+ logicalNodeConfigurationManager.getDestinationSubDataPool()+"/_bulk";
         if (isProxy){
@@ -51,7 +53,10 @@ public class BatchLoader {
             }
             outputMessage=response.toString();
 
-            outputMessage=extractErrorMessage(outputMessage);
+            if ( ( this.reportingType == "silent"  ) || (this.reportingType == "")) {
+                outputMessage = extractErrorMessage(outputMessage);
+            }
+
         }
 
         return outputMessage;

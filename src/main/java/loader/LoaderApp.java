@@ -27,7 +27,7 @@ public class LoaderApp {
 
       /*  String baseDirectory = "C:\\test_java\\output5"; */
 
-        BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager);
+        BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager,"silent");
 
         boolean result = batchesLoader.load();
 
