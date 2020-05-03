@@ -151,3 +151,5 @@ S
 #src/main/java/reader/ReaderApp.java,7\9\799290d159f506d569dfb0ed889477a5c4dce3c3
 T
 $src/main/java/manager/NewThread.java,b\6\b6b02c2d0e880d766529b56bca43361cd38a3843
+n
+>src/test/java/manager/LogicalNodeConfigurationManagerTest.java,a\5\a53e6b7707fb6bc2de247b27e4c2b976768fec4a

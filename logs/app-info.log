@@ -1,0 +1,57 @@
+2020-05-03T09:41:48.488+0200 INFO Starting processing main
+2020-05-03T09:41:48.493+0200 INFO start:09:41:48.493443500
+2020-05-03T09:41:48.493+0200 INFO thread: Thread[zh_CN,5,main]
+2020-05-03T09:41:48.493+0200 INFO Node: zh_CN task load starting
+2020-05-03T09:41:51.373+0200 INFO Batch:batch_004_zh_CN_zh loaded successfully
+2020-05-03T09:41:51.611+0200 INFO Batch:batch_006_zh_CN_zh loaded successfully
+2020-05-03T09:41:51.726+0200 INFO Batch:batch_007_zh_CN_zh loaded successfully
+2020-05-03T09:41:51.842+0200 INFO Batch:batch_008_zh_CN_zh loaded successfully
+2020-05-03T09:41:51.842+0200 INFO Node: zh_CN task load ended
+2020-05-03T09:41:51.842+0200 INFO Ended processing main
+2020-05-03T09:41:51.842+0200 INFO finished processing:09:41:51.842857600
+2020-05-03T09:41:51.842+0200 INFO Duration 1: 00:00:03
+2020-05-03T11:08:39.094+0200 INFO Starting processing main
+2020-05-03T11:08:39.105+0200 INFO start:11:08:39.103637500
+2020-05-03T11:08:39.107+0200 INFO thread: Thread[zh_CN,5,main]
+2020-05-03T11:08:39.108+0200 INFO Node: zh_CN task load starting
+2020-05-03T11:08:40.568+0200 INFO Batch:batch_004_zh_CN_zh loaded successfully
+2020-05-03T11:08:40.739+0200 INFO Batch:batch_006_zh_CN_zh loaded successfully
+2020-05-03T11:08:40.810+0200 INFO Batch:batch_007_zh_CN_zh loaded successfully
+2020-05-03T11:08:40.873+0200 INFO Batch:batch_008_zh_CN_zh loaded successfully
+2020-05-03T11:08:40.874+0200 INFO Node: zh_CN task load ended
+2020-05-03T11:08:40.874+0200 INFO Ended processing main
+2020-05-03T11:08:40.875+0200 INFO finished processing:11:08:40.875410500
+2020-05-03T11:08:40.876+0200 INFO Duration 1: 00:00:01
+2020-05-03T13:51:29.431+0200 INFO Starting processing main
+2020-05-03T13:51:29.441+0200 INFO start:13:51:29.439599800
+2020-05-03T13:51:29.443+0200 INFO thread: Thread[zh_CN,5,main]
+2020-05-03T13:51:29.444+0200 INFO Node: zh_CN task load starting
+2020-05-03T13:51:30.739+0200 INFO Batch:batch_004_zh_CN_zh loaded successfully
+2020-05-03T13:51:30.946+0200 INFO Batch:batch_006_zh_CN_zh loaded successfully
+2020-05-03T13:51:31.012+0200 INFO Batch:batch_007_zh_CN_zh loaded successfully
+2020-05-03T13:51:31.102+0200 INFO Batch:batch_008_zh_CN_zh loaded successfully
+2020-05-03T13:51:31.103+0200 INFO Node: zh_CN task load ended
+2020-05-03T13:51:31.103+0200 INFO Ended processing main
+2020-05-03T13:51:31.104+0200 INFO finished processing:13:51:31.104519800
+2020-05-03T13:51:31.105+0200 INFO Duration 1: 00:00:01
+2020-05-03T15:48:40.615+0200 INFO Starting processing main
+2020-05-03T15:48:40.627+0200 INFO start:15:48:40.625213800
+2020-05-03T15:48:40.630+0200 INFO thread: Thread[zh_CN,5,main]
+2020-05-03T15:48:40.630+0200 INFO Node: zh_CN task read starting
+2020-05-03T15:48:40.824+0200 INFO Ended processing main
+2020-05-03T15:48:40.825+0200 INFO finished processing:15:48:40.825230700
+2020-05-03T15:48:40.826+0200 INFO Duration 1: 00:00:00
+2020-05-03T15:49:35.923+0200 INFO Starting processing main
+2020-05-03T15:49:35.938+0200 INFO start:15:49:35.935434700
+2020-05-03T15:50:52.697+0200 INFO thread: Thread[zh_CN,5,main]
+2020-05-03T15:51:04.538+0200 INFO Node: zh_CN task read starting
+2020-05-03T15:51:12.133+0200 INFO Ended processing main
+2020-05-03T15:51:15.465+0200 INFO finished processing:15:51:13.511111800
+2020-05-03T15:51:46.209+0200 INFO Duration 1: 00:01:37
+2020-05-03T15:51:57.862+0200 INFO Starting processing main
+2020-05-03T15:51:57.878+0200 INFO start:15:51:57.862058200
+2020-05-03T15:51:59.875+0200 INFO thread: Thread[zh_CN,5,main]
+2020-05-03T15:52:02.410+0200 INFO Node: zh_CN task read starting
+2020-05-03T15:55:00.860+0200 INFO Ended processing main
+2020-05-03T15:55:00.860+0200 INFO finished processing:15:55:00.860325600
+2020-05-03T15:55:00.868+0200 INFO Duration 1: 00:03:02
