@@ -27,16 +27,19 @@ public class LauncherApp {
         List<String> listOfLogicalNodes = new ArrayList<String>();
         String basePath="";
         String task="";
+        String lastBatch="";
 
         Pattern nodeListPattern = Pattern.compile("nodeList=(.*)");
         Pattern basePathPattern = Pattern.compile("basePath=(.*)");
         Pattern taskPattern = Pattern.compile("task=(.*)");
+        Pattern lastBatchPattern = Pattern.compile("lastBatch=(.*)");
 
         for ( int i=0; i < args.length;i++){
 
             Matcher nodeListMatcher = nodeListPattern.matcher(args[i]);
             Matcher basePathMatcher = basePathPattern.matcher(args[i]);
             Matcher taskMatcher = taskPattern.matcher(args[i]);
+            Matcher lastBatchMatcher = lastBatchPattern.matcher(args[i]);
 
             String listOfNodes="";
 
@@ -47,13 +50,15 @@ public class LauncherApp {
                 basePath = basePathMatcher.group(1);
             } else if (taskMatcher.find()){
                 task = taskMatcher.group(1);
+            } else if (lastBatchMatcher.find()){
+                lastBatch = lastBatchMatcher.group(1);
             }
         }
 
         List<NewThread> listOfThreads = new ArrayList<NewThread>();
 
         for ( String currentLogicalNode : listOfLogicalNodes){
-            NewThread currentThread = new NewThread(currentLogicalNode,basePath,task);
+            NewThread currentThread = new NewThread(currentLogicalNode,basePath,task,lastBatch);
             listOfThreads.add(currentThread);
         }
 

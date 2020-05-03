@@ -19,13 +19,15 @@ class NewThread implements Runnable {
     String basePath;
     Thread thread;
     String task;
+    String lastBatch;
 
     private static final Logger logger = LogManager.getLogger(NewThread.class.getName());
 
-    NewThread(String threadName,String basePath, String task){
+    NewThread(String threadName,String basePath, String task, String lastBatch){
         logicalNode = threadName;
         this.basePath = basePath;
         this.task = task;
+        this.lastBatch = lastBatch;
         thread = new Thread(this,this.logicalNode);
         String threadMessage = String.format("thread: %s",thread);
         logger.info(threadMessage);
@@ -35,7 +37,7 @@ class NewThread implements Runnable {
     @SneakyThrows
     public void run(){
 
-        String lastProcessedIdentification="0";
+        String lastProcessedIdentification= this.lastBatch!="" ? this.lastBatch:"0";
         String startingMessage = String.format("Node: %s task %s starting",logicalNode,this.task);
         logger.info(startingMessage);
         LogicalNodeConfigurationManager logicalNodeConfigurationManager = new LogicalNodeConfigurationManager(Paths.get(this.basePath),logicalNode);
