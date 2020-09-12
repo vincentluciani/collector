@@ -109,8 +109,6 @@ U
 %src/main/java/loader/BatchLoader.java,1\d\1daecd0857ab8d960280323564447b1ae387d2a2
 W
 'src/main/java/reader/ReaderFactory.java,3\f\3f161dd6883b753c8af160fcafd15bafbeda9169
-^
-.src/main/java/reader/OracleDatabaseReader.java,7\d\7d081f12964890a27431defed59a96a48268f57a
 j
 :src/main/java/manager/LogicalNodeConfigurationManager.java,0\c\0c5ebb1940c2f9cc64b78812ef4165e9d34045a5
 _
@@ -121,10 +119,6 @@ P
  src/main/java/reader/Reader.java,f\3\f3450fffc18df366fe870621683685cf53035d9a
 W
 'src/main/java/loader/BatchesLoader.java,b\4\b4073a623c1143663460a701e05706a3e1e81b54
-Y
-)src/main/java/reader/ReadingExcelApp.java,6\c\6ce40dd8101acd81c16597ebaf6282f22a5f534b
-U
-%src/main/java/reader/ExcelReader.java,8\3\83ad20cb390a2ff707812914d5c6405dd34c6ecd
 S
 #src/main/java/loader/LoaderApp.java,4\5\45e1d4ce51c0acf426f62d70b95dd72e253fb115
 U
@@ -153,3 +147,17 @@ T
 $src/main/java/manager/NewThread.java,b\6\b6b02c2d0e880d766529b56bca43361cd38a3843
 n
 >src/test/java/manager/LogicalNodeConfigurationManagerTest.java,a\5\a53e6b7707fb6bc2de247b27e4c2b976768fec4a
+m
+=src/main/java/reader/databaseReader/OracleDatabaseReader.java,2\c\2cf17cf88b7b4955129a76ce2cf67ab4b6b6be20
+a
+1src/main/java/reader/excelReader/ExcelReader.java,9\8\98e69a148abfa35ec9a51d207c3f78a4611f0972
+e
+5src/main/java/reader/excelReader/ReadingExcelApp.java,c\2\c2aaef2ab332c8dab53d50a006e25513449a6870
+a
+1src/main/java/reader/XMLFileReader/Hierarchy.java,8\9\892ab2cc35ed17199593640b48edd7d13ba05091
+d
+4src/main/java/reader/XMLFileReader/statusKeeper.java,1\0\102cdb1a21aeaaf1c549c66be20340bb74f9b42a
+e
+5src/main/java/reader/XMLFileReader/XMLFileReader.java,8\0\8015e0f1f043195c1d5fd4b5f6da6e5c9cc4323d
+r
+Bsrc/main/java/reader/XMLFileReader/XMLFileReaderWithHierarchy.java,2\d\2de45e6ba755a45339dcec869a5280b7b13ea614

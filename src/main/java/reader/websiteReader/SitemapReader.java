@@ -23,6 +23,8 @@ public class SitemapReader implements Reader {
 
 
     private String urlPattern;
+    private String categoryPattern;
+
     private String lastProcessedIdentification;
 
   /*  public SitemapReader(String sitemapURL, String urlPattern, String protocol, boolean isProxy) throws IOException {
@@ -39,8 +41,9 @@ public class SitemapReader implements Reader {
         this.protocol = this.logicalNodeConfigurationManager.getSitemapProtocol();
         this.isProxy = ( this.logicalNodeConfigurationManager.getSitemapIsProxy() == "true")?true:false;
         this.urlPattern = this.logicalNodeConfigurationManager.getUrlPattern();
+        this.categoryPattern = this.logicalNodeConfigurationManager.getCategoryPattern();
 
-        logger.info("Sitemap URL:"+this.url);
+        logger.info("Sitemap URL:"+this.url );
     }
 
 
@@ -67,13 +70,10 @@ public class SitemapReader implements Reader {
 
         listOfURLs = getURLList();
 
-
-
         // go through each page of the sitemap to add elements to the array of entities
         for ( String url : listOfURLs){
 
-
-            HTMLReader htmlReader = new HTMLReader(url);
+            HTMLReader htmlReader = new HTMLReader(url,this.categoryPattern);
             ArrayList<Entity> listOfQuestionAnswers = new ArrayList<Entity>();
 
             listOfQuestionAnswers = htmlReader.readKnowledgeTables();

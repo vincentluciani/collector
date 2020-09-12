@@ -85,6 +85,7 @@ public class LogicalNodeConfigurationManager {
     @Getter private String sitemapProtocol;
     @Getter private String sitemapIsProxy;
     @Getter private String urlPattern;
+    @Getter private String categoryPattern;
 
     private Path configurationsBasePath;
 
@@ -117,7 +118,8 @@ public class LogicalNodeConfigurationManager {
     private static final  String SITEMAP_URL="sitemapUrl";
     private static final  String SITEMAP_PROTOCOL="sitemapProtocol";
     private static final  String SITEMAP_ISPROXY="sitemapIsProxy";
-    private static final String  URL_PATTERN="urlPattern";
+    private static final String URL_PATTERN="urlPattern";
+    private static final String CATEGORY_PATTERN="categoryPattern";
 
     private static final Logger logger = LogManager.getLogger(LogicalNodeConfigurationManager.class.getName());
 
@@ -264,6 +266,7 @@ public class LogicalNodeConfigurationManager {
         this.sitemapProtocol = getSimpleParameter(SITEMAP_PROTOCOL,configuration);
         this.sitemapIsProxy = getSimpleParameter(SITEMAP_ISPROXY,configuration);
         this.urlPattern = getSimpleParameter(URL_PATTERN,configuration);
+        this.categoryPattern = getSimpleParameter(CATEGORY_PATTERN,configuration);
     }
 
     public void readPhysicalSourceProperties(){

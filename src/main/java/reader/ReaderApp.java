@@ -4,7 +4,9 @@ import lombok.SneakyThrows;
 import manager.LogicalNodeConfigurationManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -27,7 +29,7 @@ public class ReaderApp {
             try {
                 Reader reader = ReaderFactory.getReader(readerConfigurationManager.getLogicalNodeType(),readerConfigurationManager,lastProcessedIdentification);
                 reader.readAndOutputToUniversalFile();
-            } catch (SQLException e) {
+            } catch (SQLException | ParserConfigurationException | SAXException e) {
                 logger.error(e.getMessage());
             }
             String endingMessage = String.format("Node: %s ended",logicalNode);

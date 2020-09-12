@@ -168,6 +168,36 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/XMLFileReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/XMLFileReader/Hierarchy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/XMLFileReader/XMLFileReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/XMLFileReader/XMLFileReaderWithHierarchy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/XMLFileReader/statusKeeper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/databaseReader/OracleDatabaseReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/websiteReader/Entity.java">
           <value>
             <set />
@@ -458,6 +488,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../input_files/test.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../testCompanion/pom.xml">
           <value>
             <set />
@@ -488,7 +523,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/java/XMLFileReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/myseeurope.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/myseeurope_redvpc.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/mysetest">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/quality_data_us.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/quality_data_us_full.txt">
           <value>
             <set />
           </value>

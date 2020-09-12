@@ -21,7 +21,7 @@ public class HTMLReaderTest {
     @Test
     public void checkTableParsed() throws IOException {
 
-        HTMLReader htmlReader = new HTMLReader("https://www.vincent-luciani.com/php-tutorial/index.html");
+        HTMLReader htmlReader = new HTMLReader("https://www.vincent-luciani.com/php-tutorial/index.html","/(.*?)-tutorial/.*");
 
         htmlReader.readKnowledgeTables();
 

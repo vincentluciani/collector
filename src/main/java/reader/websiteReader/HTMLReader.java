@@ -1,5 +1,7 @@
 package reader.websiteReader;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -19,9 +21,13 @@ public class HTMLReader {
     Document HTMLDocument;
     String url;
     String category;
+    String categoryPattern;
+
     boolean isUrlReachable=false;
 
-    public HTMLReader(String url) throws IOException {
+    private static final Logger logger = LogManager.getLogger(HTMLReader.class.getName());
+
+    public HTMLReader(String url, String categoryPattern) throws IOException {
         try {
             HTMLDocument = Jsoup.connect(url).get();
             this.isUrlReachable=true;
@@ -30,6 +36,8 @@ public class HTMLReader {
             System.out.println(ex);
         }
         this.url = url;
+        this.categoryPattern = categoryPattern;
+        logger.info("url:"+this.url);
         findCategoryFromUrl();
     }
 
@@ -41,19 +49,17 @@ public class HTMLReader {
         String path = new URL(url).getPath();
 
         // todo put in array and parameterize
-        Pattern pattern1 = Pattern.compile("^/sql-tutorial/.*");
-        Pattern pattern2 = Pattern.compile("^/php-tutorial/.*");
+        Pattern pattern = Pattern.compile(this.categoryPattern);
 
-        Matcher matcher1 = pattern1.matcher(path);
-        Matcher matcher2 = pattern2.matcher(path);
+        Matcher matcher = pattern.matcher(path);
 
-        if (matcher1.find()) {
-            this.category = "SQL";
-        } else if (matcher2.find()){
-            this.category ="PHP";
+        if (matcher.find()) {
+            this.category = matcher.group(1).toUpperCase();
         } else {
             this.category = "other";
         }
+
+        logger.info("category:"+this.category);
 
     }
     public ArrayList<Entity> readKnowledgeTables()
