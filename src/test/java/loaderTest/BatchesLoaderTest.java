@@ -18,7 +18,7 @@ public class BatchesLoaderTest {
 
         BatchesLoader batchesLoader = new BatchesLoader(logicalNodeConfigurationManager,"verbose");
 
-        boolean result = batchesLoader.load();
+        boolean result = batchesLoader.loadAllBatches();
 
         assertEquals(true,result);
 

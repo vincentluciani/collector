@@ -1,4 +1,4 @@
-package reader;
+package reader.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,16 +11,14 @@ import java.nio.file.Path;
 
 public class UniversalFileCreator {
 
+    private static final Logger logger = LogManager.getLogger(UniversalFileCreator.class.getName());
     private Path basePath;
     private String logicalNode;
     private String logicalSubNode;
-
     private Path folderForLocale;
     private Path folderForSubLocale;
 
-    private static final Logger logger = LogManager.getLogger(UniversalFileCreator.class.getName());
-
-    public UniversalFileCreator(Path basePath,String logicalNode, String logicalSubNode) throws IOException {
+    public UniversalFileCreator(Path basePath, String logicalNode, String logicalSubNode) throws IOException {
         this.basePath = basePath;
         this.logicalNode = logicalNode;
         this.logicalSubNode = logicalSubNode;
@@ -37,10 +35,10 @@ public class UniversalFileCreator {
         row = row.replaceAll("\"", "\\\\\"");
 
 
-        try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath.toFile(), true))){
+        try (BufferedWriter out = new BufferedWriter(new FileWriter(filePath.toFile(), true))) {
             out.write(row);
             out.newLine();
-        }catch (IOException e){
+        } catch (IOException e) {
             logger.error(e.getMessage());
         }
     }

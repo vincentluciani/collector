@@ -7,5 +7,5 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public interface Reader {
-    public void readAndOutputToUniversalFile() throws SQLException, IOException, ParserConfigurationException, SAXException;
+    void readAndOutputToUniversalFile() throws SQLException, IOException, ParserConfigurationException, SAXException;
 }

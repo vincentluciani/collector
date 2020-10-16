@@ -1,4 +1,4 @@
-package reader.websiteReader;
+package reader.readers.websiteReader;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,39 +12,36 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HTMLReader {
 
+    private static final Logger logger = LogManager.getLogger(HTMLReader.class.getName());
     Document HTMLDocument;
     String url;
     String category;
     String categoryPattern;
-
-    boolean isUrlReachable=false;
-
-    private static final Logger logger = LogManager.getLogger(HTMLReader.class.getName());
+    boolean isUrlReachable = false;
 
     public HTMLReader(String url, String categoryPattern) throws IOException {
         try {
             HTMLDocument = Jsoup.connect(url).get();
-            this.isUrlReachable=true;
+            this.isUrlReachable = true;
         } catch (HttpStatusException ex) {
-            this.isUrlReachable=false;
+            this.isUrlReachable = false;
             System.out.println(ex);
         }
         this.url = url;
         this.categoryPattern = categoryPattern;
-        logger.info("url:"+this.url);
+        logger.info("url:" + this.url);
         findCategoryFromUrl();
     }
 
     public void findCategoryFromUrl() throws MalformedURLException {
 
-        if (!this.isUrlReachable){
-            this.category="";
+        if (!this.isUrlReachable) {
+            this.category = "";
         }
         String path = new URL(url).getPath();
 
@@ -59,32 +56,31 @@ public class HTMLReader {
             this.category = "other";
         }
 
-        logger.info("category:"+this.category);
+        logger.info("category:" + this.category);
 
     }
-    public ArrayList<Entity> readKnowledgeTables()
-    {
+
+    public ArrayList<Entity> readKnowledgeTables() {
         ArrayList<Entity> finalListOfQuestionAnswers = new ArrayList<Entity>();
 
-        if (!this.isUrlReachable){
+        if (!this.isUrlReachable) {
             return finalListOfQuestionAnswers;
         }
 
         Elements mainSections = this.HTMLDocument.select("h2");
 
-        for (Element currentSection : mainSections)
-        {
+        for (Element currentSection : mainSections) {
             String sectionTitle = currentSection.text();
 
             Element nextSibling = currentSection.nextElementSibling();
             String elementTag = nextSibling.tag().toString();
 
-            while ( elementTag != "table") {
-               nextSibling = nextSibling.nextElementSibling();
-               elementTag = nextSibling.tag().toString();
+            while (elementTag != "table") {
+                nextSibling = nextSibling.nextElementSibling();
+                elementTag = nextSibling.tag().toString();
             }
             ArrayList<Entity> currentListOfQuestionAnswers = new ArrayList<Entity>();
-                currentListOfQuestionAnswers = readKnowledgeTable(nextSibling,sectionTitle);
+            currentListOfQuestionAnswers = readKnowledgeTable(nextSibling, sectionTitle);
 
             finalListOfQuestionAnswers.addAll(currentListOfQuestionAnswers);
         }
@@ -92,7 +88,7 @@ public class HTMLReader {
         return finalListOfQuestionAnswers;
     }
 
-    public ArrayList<Entity> readKnowledgeTable(Element tableElement,String sectionTitle) {
+    public ArrayList<Entity> readKnowledgeTable(Element tableElement, String sectionTitle) {
 
         ArrayList<Entity> listOfQuestionAnswers = new ArrayList<Entity>();
 

@@ -1,6 +1,7 @@
 package dispatcher;
 
 import org.apache.commons.io.FileUtils;
+
 import java.io.IOException;
 import java.nio.file.Path;
 
@@ -8,7 +9,7 @@ public class FileDispatcher {
 
     private DispatcherConfigurationManager dispatcherConfigurationManager;
 
-    public FileDispatcher(DispatcherConfigurationManager dispatcherConfigurationManager){
+    public FileDispatcher(DispatcherConfigurationManager dispatcherConfigurationManager) {
         this.dispatcherConfigurationManager = dispatcherConfigurationManager;
     }
 
@@ -24,6 +25,7 @@ public class FileDispatcher {
         }
 
     }
+
     public void dispatchDeletedFile(Path fileToCompare) throws IOException {
 
         Path fileInNewDirectory = this.dispatcherConfigurationManager.getDirectoryWithNewFiles().resolve(fileToCompare);

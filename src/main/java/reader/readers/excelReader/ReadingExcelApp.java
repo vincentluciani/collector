@@ -1,7 +1,6 @@
-package reader.excelReader;
+package reader.readers.excelReader;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import reader.excelReader.ExcelReader;
 
 import java.io.IOException;
 

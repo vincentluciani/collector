@@ -1,4 +1,0 @@
-
-squid:S1450"^Remove the "folderForLocale" field and declare it as a local variable in the relevant methods.(—ÕÌéıÿÿÿÿ8¢¬Îæœ.
-\squid:S37254"?Replace this with a call to the "toFile().isDirectory()" method(Åß£F8¢¬Îæœ.
-]squid:S3725:"?Replace this with a call to the "toFile().isDirectory()" method(ğŞñ²8ËøÑæœ.

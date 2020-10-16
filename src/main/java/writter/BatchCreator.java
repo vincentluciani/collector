@@ -14,10 +14,10 @@
 
 package writter;
 
+import manager.LogicalNodeConfigurationManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import manager.LogicalNodeConfigurationManager;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,19 +34,18 @@ import java.util.List;
 
 public class BatchCreator {
 
+    private static final Logger logger = LogManager.getLogger(BatchCreator.class.getName());
+    private static Integer batchNumber = 0;
+    LogicalNodeConfigurationManager logicalNodeConfigurationManager;
     private String logicalNode;
     private Path baseDirectory;
-    LogicalNodeConfigurationManager logicalNodeConfigurationManager;
-    private static Integer batchNumber=0;
-    private Collection<Path> currentFilesUsedForBatch = new ArrayList<Path>();
+    private Collection<Path> currentFilesUsedForBatch = new ArrayList<>();
     private String destinationDataPool;
     private String destinationSubDataPool;
     private Path readerInputDirectory;
     private Path subDataPoolDirectory;
 
-    private static final Logger logger = LogManager.getLogger(BatchCreator.class.getName());
-
-    public BatchCreator(String logicalNode, String baseDirectory, LogicalNodeConfigurationManager logicalNodeConfigurationManager){
+    public BatchCreator(String logicalNode, String baseDirectory, LogicalNodeConfigurationManager logicalNodeConfigurationManager) {
         this.logicalNode = logicalNode;
         this.baseDirectory = Paths.get(baseDirectory);
         this.readerInputDirectory = logicalNodeConfigurationManager.getWriterInputBasePath();
@@ -56,17 +55,17 @@ public class BatchCreator {
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
     }
 
-    public String putContainOfInputInString(){
+    public String putContainOfInputInString() {
 
         String batchContent = "";
         StringBuilder stringBuilder = new StringBuilder(batchContent);
 
-        Integer lineInBatchCount=1;
+        Integer lineInBatchCount = 1;
         try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.subDataPoolDirectory)) {
             for (Path currentFile : workingDirectoryStream) {
                 String filename = currentFile.getFileName().toString();
-                List<String> lines  = FileUtils.readLines(currentFile.toFile(), StandardCharsets.UTF_8);
-                for (java.lang.String line : lines){
+                List<String> lines = FileUtils.readLines(currentFile.toFile(), StandardCharsets.UTF_8);
+                for (java.lang.String line : lines) {
                     JSONBodyCreator jsonBodyCreator = new JSONBodyCreator(filename,
                             this.logicalNodeConfigurationManager.getOutputCreationTemplate(),
                             line,
@@ -76,7 +75,7 @@ public class BatchCreator {
                 this.currentFilesUsedForBatch.add(currentFile);
 
 
-                if ( lineInBatchCount >= this.logicalNodeConfigurationManager.getWriterBatchSize()){
+                if (lineInBatchCount >= this.logicalNodeConfigurationManager.getWriterBatchSize()) {
                     break;
                 }
                 lineInBatchCount++;
@@ -94,28 +93,24 @@ public class BatchCreator {
         String stringToOutput = this.putContainOfInputInString();
 
         String batchFileName = String.format("batch_%03d_%s_%s", batchNumber,
-                logicalNode,logicalNodeConfigurationManager.getDestinationSubDataPool());
+                logicalNode, logicalNodeConfigurationManager.getDestinationSubDataPool());
         batchNumber++;
         Path batchPath = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve(batchFileName);
 
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(batchPath.toFile())))
-        {
-            writer.write( stringToOutput );
-        }
-        catch ( IOException e)
-        {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(batchPath.toFile()))) {
+            writer.write(stringToOutput);
+        } catch (IOException e) {
             logger.error(e.getMessage());
         }
 
-        for (Path currentFileName : this.currentFilesUsedForBatch)
-        {
+        for (Path currentFileName : this.currentFilesUsedForBatch) {
             // Move the file to processed directory
             File targetFileName = logicalNodeConfigurationManager.getBatchForUploadBasePath().resolve("work")
                     .resolve("directoryWithProcessedFiles")
                     .resolve(currentFileName.getFileName())
                     .toFile();
 
-            FileUtils. moveFile(currentFileName.toFile(), targetFileName);
+            FileUtils.moveFile(currentFileName.toFile(), targetFileName);
         }
 
         this.currentFilesUsedForBatch.clear();

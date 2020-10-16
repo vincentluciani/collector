@@ -1,19 +1,18 @@
-package reader.excelReader;
+package reader.readers.excelReader;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
+
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 
 public class ExcelReader {
 
-    Workbook workbook;
+    public static final String SAMPLE_XLSX_FILE_PATH = "C:\\Users\\sesa201795\\Documents\\Copy of Completed - Translation of categories - 09-01-20206VL8-1.xlsm";
 
     //https://www.callicoder.com/java-read-excel-file-apache-poi/
-
-    public static final String SAMPLE_XLSX_FILE_PATH = "C:\\Users\\sesa201795\\Documents\\Copy of Completed - Translation of categories - 09-01-20206VL8-1.xlsm";
+    Workbook workbook;
 
     // Creating a Workbook from an Excel file (.xls or .xlsx)
 
@@ -33,14 +32,14 @@ public class ExcelReader {
             getL1labels(sheet.getSheetName());
         }*/
 
-        for ( int sheetIndex=2; sheetIndex<workbook.getNumberOfSheets(); sheetIndex++ ){
+        for (int sheetIndex = 2; sheetIndex < workbook.getNumberOfSheets(); sheetIndex++) {
             getF1F2labels(sheetIndex);
         }
 
         // Closing the workbook
     }
 
-    public void getF1F2labels(int sheetIndex){
+    public void getF1F2labels(int sheetIndex) {
         // Getting the Sheet at index zero
         Sheet sheet = workbook.getSheetAt(sheetIndex);
         String sheetName = sheet.getSheetName();
@@ -48,25 +47,25 @@ public class ExcelReader {
         // Create a DataFormatter to format and get each cell's value as String
         DataFormatter dataFormatter = new DataFormatter();
 
-        for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++){
+        for (int rowIndex = 1; rowIndex <= sheet.getLastRowNum(); rowIndex++) {
 
             Row row = sheet.getRow(rowIndex);
             Cell cellF1 = row.getCell(1);
-            String testValue="";
-            if (cellF1!=null) {
+            String testValue = "";
+            if (cellF1 != null) {
                 String labelValue = cellF1.getStringCellValue();
                 if (labelValue.length() > 1) {
-                    testValue = String.format("%s;%s;%s", sheetName, cellF1.getStringCellValue(),"F1");
+                    testValue = String.format("%s;%s;%s", sheetName, cellF1.getStringCellValue(), "F1");
                     System.out.println(testValue);
                 }
             }
 
             Cell cellF2 = row.getCell(3);
-            testValue="";
-            if (cellF1!=null) {
+            testValue = "";
+            if (cellF1 != null) {
                 String labelValue = cellF2.getStringCellValue();
                 if (labelValue.length() > 1) {
-                    testValue = String.format("%s;%s;%s", sheetName, cellF2.getStringCellValue(),"F2");
+                    testValue = String.format("%s;%s;%s", sheetName, cellF2.getStringCellValue(), "F2");
                     System.out.println(testValue);
                 }
             }
@@ -76,12 +75,12 @@ public class ExcelReader {
 
     }
 
-    void processL1label(String language){
-
+    void processL1label(String language) {
 
 
     }
-    public void browseAllCells()  throws IOException, InvalidFormatException{
+
+    public void browseAllCells() throws IOException, InvalidFormatException {
 
         // Getting the Sheet at index zero
         Sheet sheet = workbook.getSheetAt(0);

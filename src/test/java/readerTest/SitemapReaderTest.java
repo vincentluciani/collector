@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import reader.websiteReader.HTMLReader;
-import reader.websiteReader.SitemapReader;
+import reader.readers.websiteReader.SitemapReader;
 
 
 import static junit.framework.TestCase.assertEquals;

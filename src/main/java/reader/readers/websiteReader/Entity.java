@@ -1,4 +1,4 @@
-package reader.websiteReader;
+package reader.readers.websiteReader;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ public class Entity {
     @Setter
     private String subcategory;
 
-    public Entity(String category,String subcategory,String question,String answer){
+    public Entity(String category, String subcategory, String question, String answer) {
         this.category = category;
         this.subcategory = subcategory;
         this.question = question;

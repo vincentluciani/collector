@@ -198,6 +198,86 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/factory/ReaderFactory.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/OracleDatabaseReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/XMLFileReader/Hierarchy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/databaseReader/OracleDatabaseReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/excelReader/ExcelReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/websiteReader/Entity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/websiteReader/HTMLReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/websiteReader/InstallCert.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/websiteReader/SitemapReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/websiteReader/URLReaderWithMatch.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/wikiReader/Entity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/wikiReader/WebPageReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/wikiReader/webpagereader/ActorReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/wikiReader/webpagereader/AwardReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/readers/wikiReader/webpagereader/FilmReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/reader/utils/UniversalFileCreator.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/reader/websiteReader/Entity.java">
           <value>
             <set />
@@ -314,6 +394,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/test/java/DispatcherTest/LogFileAnalyzer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/test/java/TimeManipulator.java">
           <value>
             <set />
           </value>
@@ -528,6 +613,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/checkinclusion.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/checkinclusion_US.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/checkinclusion_WW.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/myseeurope.txt">
           <value>
             <set />
@@ -543,12 +643,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/outputmassive test.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/quality_data_us.txt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/quality_data_us_full.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../testCompanion/src/main/resources/queries_US.txt">
           <value>
             <set />
           </value>

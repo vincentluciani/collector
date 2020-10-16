@@ -11,7 +11,7 @@ public class JSONBodyCreator {
     String documentId;
     String actionString;
 
-    public JSONBodyCreator(String documentId, String outputTemplate, String csvContent, String actionString){
+    public JSONBodyCreator(String documentId, String outputTemplate, String csvContent, String actionString) {
 
         this.csvContent = csvContent;
         this.outputTemplate = outputTemplate;
@@ -19,9 +19,9 @@ public class JSONBodyCreator {
         this.actionString = actionString;
     }
 
-    public String toString(){
+    public String toString() {
 
-        ArrayList<String> splitted = new ArrayList<String>();
+        ArrayList<String> splitted = new ArrayList<>();
 
         Pattern pattern = Pattern.compile("_\\$\\{([^}]+)\\}");
 
@@ -31,14 +31,14 @@ public class JSONBodyCreator {
             splitted.add(matcher.group(1));
         }
 
-        String jsonOutput = this.outputTemplate.replace("${id}",this.documentId);
-        jsonOutput = jsonOutput.replace("${action}",this.actionString);
+        String jsonOutput = this.outputTemplate.replace("${id}", this.documentId);
+        jsonOutput = jsonOutput.replace("${action}", this.actionString);
 
-        int i=0;
-        for ( String element : splitted){
+        int i = 0;
+        for (String element : splitted) {
 
-            String replaceFrom = String.format("${%d}",i);
-            jsonOutput = jsonOutput.replace(replaceFrom,element);
+            String replaceFrom = String.format("${%d}", i);
+            jsonOutput = jsonOutput.replace(replaceFrom, element);
             i++;
         }
 

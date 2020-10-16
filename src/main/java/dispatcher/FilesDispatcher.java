@@ -10,9 +10,9 @@ import java.nio.file.Path;
 
 public class FilesDispatcher {
 
+    private static final Logger logger = LogManager.getLogger(FilesDispatcher.class.getName());
     private DispatcherConfigurationManager dispatcherConfigurationManager;
     private FileDispatcher fileDispatcher;
-    private static final Logger logger = LogManager.getLogger(FilesDispatcher.class.getName());
 
     public FilesDispatcher(DispatcherConfigurationManager dispatcherConfigurationManager) {
 
@@ -20,11 +20,11 @@ public class FilesDispatcher {
 
     }
 
-    public void scanNewFilesDirectory(){
+    public void scanNewFilesDirectory() {
 
         this.fileDispatcher = new FileDispatcher(this.dispatcherConfigurationManager);
 
-        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.dispatcherConfigurationManager.getDirectoryWithNewFiles(), "*" )) {
+        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.dispatcherConfigurationManager.getDirectoryWithNewFiles(), "*")) {
             for (Path currentFileOrDirectory : workingDirectoryStream) {
 
 
@@ -37,9 +37,9 @@ public class FilesDispatcher {
 
     }
 
-    public void scanOldFilesDirectory(){
+    public void scanOldFilesDirectory() {
 
-        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.dispatcherConfigurationManager.getDirectoryWithOldFiles(),"*")) {
+        try (DirectoryStream<Path> workingDirectoryStream = Files.newDirectoryStream(this.dispatcherConfigurationManager.getDirectoryWithOldFiles(), "*")) {
             for (Path currentFileOrDirectory : workingDirectoryStream) {
 
                 this.fileDispatcher.dispatchDeletedFile(currentFileOrDirectory.getFileName());

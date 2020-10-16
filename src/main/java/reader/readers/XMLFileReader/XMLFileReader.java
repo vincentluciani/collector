@@ -1,4 +1,4 @@
-package reader.XMLFileReader;
+package reader.readers.XMLFileReader;
 
 import manager.LogicalNodeConfigurationManager;
 import org.apache.logging.log4j.LogManager;
@@ -7,7 +7,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 import reader.Reader;
-import reader.UniversalFileCreator;
+import reader.utils.UniversalFileCreator;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class XMLFileReaderWithHierarchy implements Reader {
+public class XMLFileReader implements Reader {
 
     private static final Logger logger = LogManager.getLogger(XMLFileReaderWithHierarchy.class.getName());
     ArrayList<String[]> listOfHierarchies = new ArrayList<String[]>();
@@ -25,7 +25,7 @@ public class XMLFileReaderWithHierarchy implements Reader {
     private String[] secondXmlHierarchy = {"company", "companyName"};
     private LogicalNodeConfigurationManager logicalNodeConfigurationManager;
 
-    public XMLFileReaderWithHierarchy(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String lastProcessedIdentification) {
+    public XMLFileReader(LogicalNodeConfigurationManager logicalNodeConfigurationManager, String lastProcessedIdentification) {
         this.logicalNodeConfigurationManager = logicalNodeConfigurationManager;
         this.lastProcessedIdentification = lastProcessedIdentification;
     }
@@ -49,52 +49,22 @@ public class XMLFileReaderWithHierarchy implements Reader {
 
                 StringBuilder sb = new StringBuilder();
 
-                ArrayList<String> listOfCurrentChildren = new ArrayList<String>();
-                ArrayList<String> listOfElementsInChild = new ArrayList<String>();
-
-                String currentChildJSON = "";
-
-                boolean levelTwoFound = false;
-
-                String currentElementName = "";
 
                 public void startElement(String uri, String localName, String qName,
                                          Attributes attributes) throws SAXException {
 
                     System.out.println("Start Element :" + qName);
-                    currentElementName = qName;
-
-                    int hierarchyLength = xmlHierarchy.length;
-                    if (qName == xmlHierarchy[3]) {
-                        System.out.println("Found child:" + qName);
-
-                        levelTwoFound = true;
-                        currentChildJSON = "{";
-                    } else if ((qName == xmlHierarchy[2]) && levelTwoFound) {
-                        levelTwoFound = false;
-                        currentChildJSON += "}";
-                        System.out.println("Child JSON:" + currentChildJSON);
-                        listOfCurrentChildren.add(currentChildJSON);
-                        System.out.println("Found a new parent:" + qName);
-                        currentChildJSON = "";
-                    }
-
 
                 }
 
                 public void endElement(String uri, String localName,
                                        String qName) throws SAXException {
 
-                    //  System.out.println("End Element :" + qName);
+                    System.out.println("End Element :" + qName);
 
                 }
 
                 public void endDocument() throws SAXException {
-
-                    currentChildJSON += "}";
-                    System.out.println("Child JSON:" + currentChildJSON);
-                    listOfCurrentChildren.add(currentChildJSON);
-                    System.out.println("Family:" + listOfCurrentChildren.toString());
 
                     row = sb.toString();
 
@@ -117,8 +87,6 @@ public class XMLFileReaderWithHierarchy implements Reader {
 
 
                     if ((null != value) && (value.trim().length() > 0)) {
-
-                        currentChildJSON += currentElementName + ":" + value + ",";
                         System.out.println("Value : " + value);
                     }
 

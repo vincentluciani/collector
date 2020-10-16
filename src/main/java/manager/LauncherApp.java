@@ -2,7 +2,6 @@ package manager;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import reader.websiteReader.Entity;
 
 import java.time.Duration;
 import java.time.LocalTime;
@@ -21,55 +20,55 @@ public class LauncherApp {
 
         logger.info("Starting processing main");
         LocalTime startTime = LocalTime.now();
-        String startMessage = String.format("start:%s",startTime.toString());
+        String startMessage = String.format("start:%s", startTime.toString());
         logger.info(startMessage);
 
-        List<String> listOfLogicalNodes = new ArrayList<String>();
-        String basePath="";
-        String task="";
-        String lastBatch="";
+        List<String> listOfLogicalNodes = new ArrayList<>();
+        String basePath = "";
+        String task = "";
+        String lastBatch = "";
 
         Pattern nodeListPattern = Pattern.compile("nodeList=(.*)");
         Pattern basePathPattern = Pattern.compile("basePath=(.*)");
         Pattern taskPattern = Pattern.compile("task=(.*)");
         Pattern lastBatchPattern = Pattern.compile("lastBatch=(.*)");
 
-        for ( int i=0; i < args.length;i++){
+        for (int i = 0; i < args.length; i++) {
 
             Matcher nodeListMatcher = nodeListPattern.matcher(args[i]);
             Matcher basePathMatcher = basePathPattern.matcher(args[i]);
             Matcher taskMatcher = taskPattern.matcher(args[i]);
             Matcher lastBatchMatcher = lastBatchPattern.matcher(args[i]);
 
-            String listOfNodes="";
+            String listOfNodes = "";
 
             if (nodeListMatcher.find()) {
                 listOfNodes = nodeListMatcher.group(1);
                 listOfLogicalNodes = Arrays.asList(listOfNodes.split("\\s*,\\s*"));
-            } else if (basePathMatcher.find()){
+            } else if (basePathMatcher.find()) {
                 basePath = basePathMatcher.group(1);
-            } else if (taskMatcher.find()){
+            } else if (taskMatcher.find()) {
                 task = taskMatcher.group(1);
-            } else if (lastBatchMatcher.find()){
+            } else if (lastBatchMatcher.find()) {
                 lastBatch = lastBatchMatcher.group(1);
             }
         }
 
-        List<NewThread> listOfThreads = new ArrayList<NewThread>();
+        List<NewThread> listOfThreads = new ArrayList<>();
 
-        for ( String currentLogicalNode : listOfLogicalNodes){
-            NewThread currentThread = new NewThread(currentLogicalNode,basePath,task,lastBatch);
+        for (String currentLogicalNode : listOfLogicalNodes) {
+            NewThread currentThread = new NewThread(currentLogicalNode, basePath, task, lastBatch);
             listOfThreads.add(currentThread);
         }
 
-        for ( NewThread currentThreadToJoin : listOfThreads){
+        for (NewThread currentThreadToJoin : listOfThreads) {
             currentThreadToJoin.thread.join();
         }
 
 
         logger.info("Ended processing main");
         LocalTime endTime = LocalTime.now();
-        String finishMessage = String.format("finished processing:%s",endTime.toString());
+        String finishMessage = String.format("finished processing:%s", endTime.toString());
         logger.info(finishMessage);
 
         Duration durfirst = Duration.between(startTime, endTime);

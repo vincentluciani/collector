@@ -1,4 +1,4 @@
-package reader.XMLFileReader;
+package reader.readers.XMLFileReader;
 
 public class statusKeeper {
 
